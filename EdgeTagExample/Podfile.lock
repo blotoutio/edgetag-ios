@@ -1,0 +1,16 @@
+PODS:
+  - EdgeTag (0.1.0)
+
+DEPENDENCIES:
+  - EdgeTag
+
+SPEC REPOS:
+  https://github.com/blotoutio/solutions.git:
+    - EdgeTag
+
+SPEC CHECKSUMS:
+  EdgeTag: a6ca03ce892a206bb4fcd0ccd40d2667297620e4
+
+PODFILE CHECKSUM: 199082b9c8ab27e4830e9cf7f9aa016a52d13f3a
+
+COCOAPODS: 1.11.2

@@ -1,0 +1,506 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		683B42D027A93C6800A8D9DE /* EdgeTagSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 683B42CF27A93C6800A8D9DE /* EdgeTagSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		683B42DD27AA685500A8D9DE /* EdgeTagEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683B42DC27AA685500A8D9DE /* EdgeTagEndpoint.swift */; };
+		683B42DF27AA692E00A8D9DE /* EndPointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683B42DE27AA692E00A8D9DE /* EndPointType.swift */; };
+		683B42E127AA695A00A8D9DE /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683B42E027AA695A00A8D9DE /* HTTPMethod.swift */; };
+		683B42E327AA6A1500A8D9DE /* HTTPTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683B42E227AA6A1500A8D9DE /* HTTPTask.swift */; };
+		683B42E527AA6A5B00A8D9DE /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683B42E427AA6A5B00A8D9DE /* Router.swift */; };
+		683B42E727AA6B4900A8D9DE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683B42E627AA6B4900A8D9DE /* NetworkManager.swift */; };
+		6847988D27B24C4A0097EDAF /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6847988C27B24C4A0097EDAF /* AppTrackingTransparency.framework */; };
+		6847989327B2A1370097EDAF /* EdgeTagManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6847989227B2A1370097EDAF /* EdgeTagManager.swift */; };
+		687D845927B5467800E9F9A2 /* ViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687D845827B5467800E9F9A2 /* ViewController+Extension.swift */; };
+		68F5C1E527AAAD590089EC81 /* PackageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F5C1E427AAAD580089EC81 /* PackageModel.swift */; };
+		68F5C1E927AD222E0089EC81 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F5C1E827AD222E0089EC81 /* ParameterEncoding.swift */; };
+		68F5C1EB27AD223E0089EC81 /* JSONParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F5C1EA27AD223E0089EC81 /* JSONParameterEncoding.swift */; };
+		68F5C1ED27AD3C9F0089EC81 /* EdgeTagConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F5C1EC27AD3C9F0089EC81 /* EdgeTagConstants.swift */; };
+		68F5C1F227AD6B010089EC81 /* PackageProviders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F5C1F127AD6B010089EC81 /* PackageProviders.swift */; };
+		68F5C1F627B119AE0089EC81 /* URLParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F5C1F527B119AE0089EC81 /* URLParameterEncoding.swift */; };
+		68FFAFB627B6739F00955354 /* EdgeTagConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FFAFB527B6739F00955354 /* EdgeTagConfiguration.swift */; };
+		68FFAFBA27B6AD1C00955354 /* IDFAHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FFAFB927B6AD1C00955354 /* IDFAHandler.swift */; };
+		68FFAFBD27B6B1C200955354 /* StorageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FFAFBC27B6B1C200955354 /* StorageHandler.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		683B42CC27A93C6800A8D9DE /* EdgeTagSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EdgeTagSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		683B42CF27A93C6800A8D9DE /* EdgeTagSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EdgeTagSDK.h; sourceTree = "<group>"; };
+		683B42DC27AA685500A8D9DE /* EdgeTagEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeTagEndpoint.swift; sourceTree = "<group>"; };
+		683B42DE27AA692E00A8D9DE /* EndPointType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPointType.swift; sourceTree = "<group>"; };
+		683B42E027AA695A00A8D9DE /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		683B42E227AA6A1500A8D9DE /* HTTPTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPTask.swift; sourceTree = "<group>"; };
+		683B42E427AA6A5B00A8D9DE /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		683B42E627AA6B4900A8D9DE /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		6847988C27B24C4A0097EDAF /* AppTrackingTransparency.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTrackingTransparency.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/System/Library/Frameworks/AppTrackingTransparency.framework; sourceTree = DEVELOPER_DIR; };
+		6847989227B2A1370097EDAF /* EdgeTagManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeTagManager.swift; sourceTree = "<group>"; };
+		687D845827B5467800E9F9A2 /* ViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extension.swift"; sourceTree = "<group>"; };
+		68F5C1E427AAAD580089EC81 /* PackageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageModel.swift; sourceTree = "<group>"; };
+		68F5C1E827AD222E0089EC81 /* ParameterEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterEncoding.swift; sourceTree = "<group>"; };
+		68F5C1EA27AD223E0089EC81 /* JSONParameterEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParameterEncoding.swift; sourceTree = "<group>"; };
+		68F5C1EC27AD3C9F0089EC81 /* EdgeTagConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeTagConstants.swift; sourceTree = "<group>"; };
+		68F5C1F127AD6B010089EC81 /* PackageProviders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageProviders.swift; sourceTree = "<group>"; };
+		68F5C1F527B119AE0089EC81 /* URLParameterEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLParameterEncoding.swift; sourceTree = "<group>"; };
+		68FFAFB527B6739F00955354 /* EdgeTagConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeTagConfiguration.swift; sourceTree = "<group>"; };
+		68FFAFB927B6AD1C00955354 /* IDFAHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDFAHandler.swift; sourceTree = "<group>"; };
+		68FFAFBC27B6B1C200955354 /* StorageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageHandler.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		683B42C927A93C6800A8D9DE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6847988D27B24C4A0097EDAF /* AppTrackingTransparency.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		683B42C227A93C6800A8D9DE = {
+			isa = PBXGroup;
+			children = (
+				683B42CE27A93C6800A8D9DE /* EdgeTagSDK */,
+				683B42CD27A93C6800A8D9DE /* Products */,
+				6847988B27B24C4A0097EDAF /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		683B42CD27A93C6800A8D9DE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				683B42CC27A93C6800A8D9DE /* EdgeTagSDK.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		683B42CE27A93C6800A8D9DE /* EdgeTagSDK */ = {
+			isa = PBXGroup;
+			children = (
+				68FFAFBB27B6B1AF00955354 /* Storage */,
+				68FFAFB827B6ACFC00955354 /* Utility */,
+				689DD05327B4E8C300325207 /* Provider */,
+				68F5C1E327AAAD340089EC81 /* Models */,
+				683B42D727AA67DB00A8D9DE /* Networking */,
+				683B42D627A93F0300A8D9DE /* Constants */,
+				683B42CF27A93C6800A8D9DE /* EdgeTagSDK.h */,
+				6847989227B2A1370097EDAF /* EdgeTagManager.swift */,
+				687D845827B5467800E9F9A2 /* ViewController+Extension.swift */,
+			);
+			path = EdgeTagSDK;
+			sourceTree = "<group>";
+		};
+		683B42D627A93F0300A8D9DE /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				68F5C1EC27AD3C9F0089EC81 /* EdgeTagConstants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		683B42D727AA67DB00A8D9DE /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				683B42DB27AA680500A8D9DE /* Encoding */,
+				683B42DA27AA67FE00A8D9DE /* Service */,
+				683B42D927AA67F500A8D9DE /* Manager */,
+				683B42D827AA67E900A8D9DE /* EndPoint */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		683B42D827AA67E900A8D9DE /* EndPoint */ = {
+			isa = PBXGroup;
+			children = (
+				683B42DC27AA685500A8D9DE /* EdgeTagEndpoint.swift */,
+			);
+			path = EndPoint;
+			sourceTree = "<group>";
+		};
+		683B42D927AA67F500A8D9DE /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				683B42E627AA6B4900A8D9DE /* NetworkManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		683B42DA27AA67FE00A8D9DE /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				683B42DE27AA692E00A8D9DE /* EndPointType.swift */,
+				683B42E027AA695A00A8D9DE /* HTTPMethod.swift */,
+				683B42E227AA6A1500A8D9DE /* HTTPTask.swift */,
+				683B42E427AA6A5B00A8D9DE /* Router.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		683B42DB27AA680500A8D9DE /* Encoding */ = {
+			isa = PBXGroup;
+			children = (
+				68F5C1E827AD222E0089EC81 /* ParameterEncoding.swift */,
+				68F5C1EA27AD223E0089EC81 /* JSONParameterEncoding.swift */,
+				68F5C1F527B119AE0089EC81 /* URLParameterEncoding.swift */,
+			);
+			path = Encoding;
+			sourceTree = "<group>";
+		};
+		6847988B27B24C4A0097EDAF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6847988C27B24C4A0097EDAF /* AppTrackingTransparency.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		689DD05327B4E8C300325207 /* Provider */ = {
+			isa = PBXGroup;
+			children = (
+				68F5C1F127AD6B010089EC81 /* PackageProviders.swift */,
+				68FFAFB927B6AD1C00955354 /* IDFAHandler.swift */,
+			);
+			path = Provider;
+			sourceTree = "<group>";
+		};
+		68F5C1E327AAAD340089EC81 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				68F5C1E427AAAD580089EC81 /* PackageModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		68FFAFB827B6ACFC00955354 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				68FFAFB527B6739F00955354 /* EdgeTagConfiguration.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		68FFAFBB27B6B1AF00955354 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				68FFAFBC27B6B1C200955354 /* StorageHandler.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		683B42C727A93C6800A8D9DE /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				683B42D027A93C6800A8D9DE /* EdgeTagSDK.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		683B42CB27A93C6800A8D9DE /* EdgeTagSDK */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 683B42D327A93C6800A8D9DE /* Build configuration list for PBXNativeTarget "EdgeTagSDK" */;
+			buildPhases = (
+				683B42C727A93C6800A8D9DE /* Headers */,
+				683B42C827A93C6800A8D9DE /* Sources */,
+				683B42C927A93C6800A8D9DE /* Frameworks */,
+				683B42CA27A93C6800A8D9DE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EdgeTagSDK;
+			productName = EdgeTagSDK;
+			productReference = 683B42CC27A93C6800A8D9DE /* EdgeTagSDK.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		683B42C327A93C6800A8D9DE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1320;
+				TargetAttributes = {
+					683B42CB27A93C6800A8D9DE = {
+						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1320;
+					};
+				};
+			};
+			buildConfigurationList = 683B42C627A93C6800A8D9DE /* Build configuration list for PBXProject "EdgeTagSDK" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 683B42C227A93C6800A8D9DE;
+			productRefGroup = 683B42CD27A93C6800A8D9DE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				683B42CB27A93C6800A8D9DE /* EdgeTagSDK */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		683B42CA27A93C6800A8D9DE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		683B42C827A93C6800A8D9DE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				68F5C1E927AD222E0089EC81 /* ParameterEncoding.swift in Sources */,
+				6847989327B2A1370097EDAF /* EdgeTagManager.swift in Sources */,
+				68F5C1F227AD6B010089EC81 /* PackageProviders.swift in Sources */,
+				68F5C1ED27AD3C9F0089EC81 /* EdgeTagConstants.swift in Sources */,
+				683B42E727AA6B4900A8D9DE /* NetworkManager.swift in Sources */,
+				68F5C1EB27AD223E0089EC81 /* JSONParameterEncoding.swift in Sources */,
+				68F5C1F627B119AE0089EC81 /* URLParameterEncoding.swift in Sources */,
+				683B42E327AA6A1500A8D9DE /* HTTPTask.swift in Sources */,
+				683B42DF27AA692E00A8D9DE /* EndPointType.swift in Sources */,
+				68FFAFB627B6739F00955354 /* EdgeTagConfiguration.swift in Sources */,
+				68F5C1E527AAAD590089EC81 /* PackageModel.swift in Sources */,
+				687D845927B5467800E9F9A2 /* ViewController+Extension.swift in Sources */,
+				683B42E527AA6A5B00A8D9DE /* Router.swift in Sources */,
+				683B42DD27AA685500A8D9DE /* EdgeTagEndpoint.swift in Sources */,
+				68FFAFBA27B6AD1C00955354 /* IDFAHandler.swift in Sources */,
+				683B42E127AA695A00A8D9DE /* HTTPMethod.swift in Sources */,
+				68FFAFBD27B6B1C200955354 /* StorageHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		683B42D127A93C6800A8D9DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		683B42D227A93C6800A8D9DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		683B42D427A93C6800A8D9DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "App would like to access IDFA for tracking purpose";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.blotout.EdgeTagSDK;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		683B42D527A93C6800A8D9DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "App would like to access IDFA for tracking purpose";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.blotout.EdgeTagSDK;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		683B42C627A93C6800A8D9DE /* Build configuration list for PBXProject "EdgeTagSDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				683B42D127A93C6800A8D9DE /* Debug */,
+				683B42D227A93C6800A8D9DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		683B42D327A93C6800A8D9DE /* Build configuration list for PBXNativeTarget "EdgeTagSDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				683B42D427A93C6800A8D9DE /* Debug */,
+				683B42D527A93C6800A8D9DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 683B42C327A93C6800A8D9DE /* Project object */;
+}
