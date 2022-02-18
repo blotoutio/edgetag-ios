@@ -13,14 +13,14 @@ Pod::Spec.new do |s|
   s.summary          = "EdgeTag Mobile Analytics SDK"
   s.description      = "Client SDK for Edgetag"
 
-  s.homepage         = "https://github.com/blotoutio/solutions"
+  s.homepage         = "https://github.com/blotoutio/edgetag-ios"
   s.license          =  {:file => 'LICENSE'}
   s.author           = { "Blotout" => "developers@blotout.io" }
-  s.source           = { :git => "https://github.com/blotoutio/solutions.git", :tag => s.version.to_s }
+  s.source           = { :git => "https://github.com/blotoutio/edgetag-ios.git", :tag => s.version.to_s }
 
   s.ios.deployment_target = '12.0'
-  s.source_files = ['packages/sdks/ios/**/*.{swift}']
-  s.exclude_files = ['packages/sdks/ios/EdgetagExample/**/*']
+  s.source_files = ['**/*.{swift}']
+  s.exclude_files = ['EdgetagExample/**/*']
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES' }
   s.swift_version = '5.0'
 end
