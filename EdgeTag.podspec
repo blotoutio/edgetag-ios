@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.summary          = "EdgeTag Mobile Analytics SDK"
   s.description      = "Client SDK for Edgetag"
 
-  s.homepage         = "https://github.com/blotoutio/solutions"
+  s.homepage         = "https://github.com/blotoutio/edgetag-ios"
   s.license          =  {:file => 'LICENSE'}
   s.author           = { "Blotout" => "developers@blotout.io" }
   s.source           = { :git => "https://github.com/blotoutio/edgetag-ios.git", :tag => s.version.to_s }
