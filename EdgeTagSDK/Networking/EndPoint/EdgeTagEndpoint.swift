@@ -16,6 +16,8 @@ public enum EdgeApi {
     case initEdgeTag(cookieStr :String)
     case tag(withData: Dictionary<AnyHashable,Any>,eventName:String,providers :Dictionary<String,Bool>,storage :Dictionary<AnyHashable,Any>,userAgent:String,cookieStr :String,pageURL:String)
     case consent(consent: Dictionary<String,Bool>,storage :Dictionary<AnyHashable,Any>,userAgent:String,cookieStr :String,pageURL:String)
+    case user(idGraphKey: String,idGraphValue:String,storage :Dictionary<AnyHashable,Any>,userAgent:String,cookieStr :String,pageURL:String)
+
 }
 
 extension EdgeApi: EndPointType {
@@ -39,6 +41,8 @@ extension EdgeApi: EndPointType {
             return "tag"
         case .consent:
             return "consent"
+        case .user:
+            return "user"
         }
     }
 
@@ -49,6 +53,8 @@ extension EdgeApi: EndPointType {
         case .tag:
             return .post
         case .consent:
+            return .post
+        case .user:
             return .post
         }
     }
@@ -69,6 +75,10 @@ extension EdgeApi: EndPointType {
 
         case .tag(let data,let eventName,let providers,let storage, let userAgent, let cookie,let pageURL):
             let bodyParam = [Constants.dataNameParameter:data,Constants.eventNameParameter:eventName,Constants.providersParameter:providers ,Constants.storageParameter :storage,Constants.userAgentParameter :userAgent,Constants.pageURLParameter:pageURL] as [String : Any]
+            return .requestParametersAndHeaders(bodyParameters: bodyParam, bodyEncoding: .jsonEncoding, urlParameters: [:], additionHeaders: [Constants.contentTypeHeader:Constants.jsonHeaderValue,Constants.cookieTypeHeader:cookie])
+            
+        case .user(let userKey,let userValue , let storage , let userAgent, let cookie,let pageURL):
+            let bodyParam = [Constants.userKeyParameter:userKey,Constants.userValueParameter:userValue , Constants.storageParameter :storage,Constants.userAgentParameter :userAgent,Constants.pageURLParameter:pageURL] as [String : Any]
             return .requestParametersAndHeaders(bodyParameters: bodyParam, bodyEncoding: .jsonEncoding, urlParameters: [:], additionHeaders: [Constants.contentTypeHeader:Constants.jsonHeaderValue,Constants.cookieTypeHeader:cookie])
 
         }
