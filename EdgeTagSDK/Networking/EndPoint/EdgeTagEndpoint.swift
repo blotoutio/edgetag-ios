@@ -13,7 +13,7 @@ public enum NetworkEnvironment {
 }
 
 public enum EdgeApi {
-    case initEdgeTag(cookieStr :String)
+    case initEdgeTag(cookieStr :String,disableConsentCheck:Bool? = false)
     case tag(withData: Dictionary<AnyHashable,Any>,eventName:String,providers :Dictionary<String,Bool>,storage :Dictionary<AnyHashable,Any>,userAgent:String,cookieStr :String,pageURL:String)
     case consent(consent: Dictionary<String,Bool>,storage :Dictionary<AnyHashable,Any>,userAgent:String,cookieStr :String,pageURL:String)
 }
@@ -33,8 +33,14 @@ extension EdgeApi: EndPointType {
 
     public var path: String {
         switch self {
-        case .initEdgeTag:
-            return "init"
+        case .initEdgeTag(let cookie,let disableConsentCheck):
+            
+            if disableConsentCheck == true
+            {
+               return "init?consentDisabled=true"
+            }else{
+                return "init"
+            }
         case .tag:
             return "tag"
         case .consent:
@@ -55,7 +61,7 @@ extension EdgeApi: EndPointType {
 
     public var task: HTTPTask {
         switch self {
-        case .initEdgeTag(let cookie):
+        case .initEdgeTag(let cookie,let disableConsentCheck):
             if cookie.count > 0
             {
                 return .requestParametersAndHeaders(bodyParameters: nil, bodyEncoding: .jsonEncoding, urlParameters: [:], additionHeaders: [Constants.cookieTypeHeader:cookie])
