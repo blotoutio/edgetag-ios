@@ -25,8 +25,9 @@ public class Router<EndPoint: EndPointType>: NetworkRouter {
 
     func request(_ route: EndPoint, completion: @escaping NetworkRouterCompletion) {
         
-        if route.baseURL?.absoluteString.count <= 0
+        if route.baseURL?.absoluteString.count ?? 0 <= 0
         {
+            let error = BaseAPIError.invalidURLError
             completion(nil, nil, error)
             return
         }

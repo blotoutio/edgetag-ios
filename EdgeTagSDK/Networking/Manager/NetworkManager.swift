@@ -8,6 +8,9 @@
 import Foundation
 import WebKit
 
+public enum BaseAPIError: String,Error {
+    case invalidURLError = "Incorrect EdgeTagConfiguration URL"
+}
 public class NetworkManager
 {
     public static let environment : NetworkEnvironment = .staging
@@ -22,9 +25,7 @@ public class NetworkManager
         case success
         case failure(String)
     }
-    enum BaseAPIError: String,Error {
-        case invalidURLError = "Incorrect EdgeTagConfiguration URL"
-    }
+    
     public enum UserKeyError : String, Error {
         case invalidKey = "Key does not belong to the permitted list of keys , Permmited keys: email, phone, firstName, lastName, gender, dateOfBirth, country, state, city, zip"
         case sdkUninitialized = "SDK is not initialized"
