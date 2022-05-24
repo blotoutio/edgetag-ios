@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //disableConsentCheck:false
 
 
-        let edgeConfiguration = EdgeTagConfiguration(withUrl: "https://sdk-demo-t.edgetag.io",shouldFetchIDFA: false)
+        let edgeConfiguration = EdgeTagConfiguration(withUrl: "https://sdk-demo-t.edgetag.io",disableConsentCheck: true)
         let edgeTagManager = EdgeTagManager.shared
 
         edgeTagManager.initEdgeTag(withEdgeTagConfiguration: edgeConfiguration, completion: { success, error in

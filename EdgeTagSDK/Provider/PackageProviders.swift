@@ -36,7 +36,8 @@ class PackageProviders{
         if tagProviders.count > 0{
             for (key, value) in tagProviders
             {
-                if ((value && consentData.keys.contains(key)) || consentData["all"] == true) {
+                let consentDataAllowsTagging:Bool = (consentData.keys.contains(key)) && (consentData[key] == true)
+                if ((value && consentDataAllowsTagging) || consentData["all"] == true) {
                     isTaggingPossible = true
                 }
             }

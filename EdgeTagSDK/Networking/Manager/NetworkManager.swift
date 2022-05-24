@@ -38,7 +38,14 @@ public class NetworkManager
         let cookieHeader = StorageHandler.shared.getCookieForHeader()
         self.updateValuesFromConfig(edgeConfig: withEdgeTagConfiguration)
 
-        router.request(.initEdgeTag(cookieStr: cookieHeader)) { data, response, error in
+        var disableConsentCheck = false
+        if withEdgeTagConfiguration.disableConsentCheck
+        {
+            disableConsentCheck = true
+        }
+        
+        
+        router.request(.initEdgeTag(cookieStr: cookieHeader,disableConsentCheck: disableConsentCheck)) { data, response, error in
 
             if error != nil {
                 completion(false,error)
@@ -78,14 +85,11 @@ public class NetworkManager
 
     func completePostInitActivity(edgeConfig:EdgeTagConfiguration)
     {
-        self.sendAppInstallEvent()
-
-        if !StorageHandler.shared.getInternalConsent(){
-            if edgeConfig.disableConsentCheck
-            {
-                self.sendInternalConsentForALL()
-            }
+        if edgeConfig.disableConsentCheck
+        {
+            updateConsentForALL()
         }
+        self.sendAppInstallEvent()
     }
 
     func sendAppInstallEvent()
@@ -121,6 +125,13 @@ public class NetworkManager
                 StorageHandler.shared.saveConsentValues(consentValues: consentValues)
             }
         }
+    }
+    
+    func updateConsentForALL()
+    {
+        let consentValues = ["all":true]
+        StorageHandler.shared.saveInternalConsentSent()
+        StorageHandler.shared.saveConsentValues(consentValues: consentValues)
     }
 
     public func giveConsentForProviders(consent:Dictionary<String,Bool>,completion: @escaping (_ success:Bool, _ error: Error?) -> Void)
