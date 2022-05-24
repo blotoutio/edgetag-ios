@@ -8,6 +8,9 @@
 import Foundation
 import WebKit
 
+public enum BaseAPIError: String,Error {
+    case invalidURLError = "Incorrect EdgeTagConfiguration URL"
+}
 public class NetworkManager
 {
     public static let environment : NetworkEnvironment = .staging
@@ -15,11 +18,19 @@ public class NetworkManager
     static let shared = NetworkManager()
     var userAgent :String?
     var checkForIDFA:Bool = false
+    var isSDKInitialized:Bool = false
+
 
     public enum APIResult<String>{
         case success
         case failure(String)
     }
+    
+    public enum UserKeyError : String, Error {
+        case invalidKey = "Key does not belong to the permitted list of keys , Permmited keys: email, phone, firstName, lastName, gender, dateOfBirth, country, state, city, zip"
+        case sdkUninitialized = "SDK is not initialized"
+    }
+
 
     enum NetworkResponse:String {
         case success
@@ -30,9 +41,19 @@ public class NetworkManager
         case noData = "Response returned with no data to decode."
         case unableToDecode = "We could not decode the response."
     }
+    var allowedUserKeys: [String] = ["email", "phone", "firstName", "lastName", "gender", "dateOfBirth", "country", "state", "city", "zip"]
+
 
     public func initEdgeTag(withEdgeTagConfiguration:EdgeTagConfiguration, completion: @escaping (_ success:Bool, _ error: Error?) -> Void)
     {
+        if withEdgeTagConfiguration.endPointUrl.count <= 0
+        {
+            let error = BaseAPIError.invalidURLError
+            completion(false,error)
+            print("\(error.rawValue)")
+            return
+        }
+        
         addObserversToCheckIDFA()
         let useragent = getUserAgent()
         let cookieHeader = StorageHandler.shared.getCookieForHeader()
@@ -55,6 +76,7 @@ public class NetworkManager
                 let result = self.handleNetworkResponse(response)
                 switch result {
                 case .success:
+                    self.isSDKInitialized = true
                     guard let responseData = data else {
                         completion(true,nil)
                         return
@@ -76,6 +98,7 @@ public class NetworkManager
                     completion(true,nil)
 
                 case .failure(_):
+                    self.isSDKInitialized = false
                     completion(false,nil)
                     break
                 }
@@ -136,6 +159,14 @@ public class NetworkManager
 
     public func giveConsentForProviders(consent:Dictionary<String,Bool>,completion: @escaping (_ success:Bool, _ error: Error?) -> Void)
     {
+        if !isSDKInitialized
+        {
+            let error = UserKeyError.sdkUninitialized
+            completion(false,error)
+            print("\(error.rawValue)")
+            return
+        }
+
         let useragent = getUserAgent()
         let storageDict = PackageProviders.shared.createStorageModelForAPI(consent:consent)
         let cookieHeader = StorageHandler.shared.getCookieForHeader()
@@ -161,6 +192,13 @@ public class NetworkManager
     public func addTag(isSystemEvent:Bool? = false,
         withData: Dictionary<AnyHashable,Any>,eventName:String, providers:Dictionary<String,Bool>,completion: @escaping (_ success:Bool, _ error: Error?) -> Void)
     {
+        if !isSDKInitialized
+        {
+            let error = UserKeyError.sdkUninitialized
+            completion(false,error)
+            print("\(error.rawValue)")
+            return
+        }
 
         let taggingAvailable = PackageProviders.shared.isTaggingPossible(tagProviders:providers)
         if !(isSystemEvent ?? false) && !taggingAvailable
@@ -192,9 +230,22 @@ public class NetworkManager
         }
     }
     
-    
     public func addUserIDGraph(userKey:String,userValue:String,completion: @escaping (_ success:Bool, _ error: Error?) -> Void)
-    {
+    {        
+        if (!allowedUserKeys.contains(userKey))
+        {
+            let error :Error = UserKeyError.invalidKey
+            completion(false,error)
+            return
+        }
+        else if !isSDKInitialized
+        {
+            let error = UserKeyError.sdkUninitialized
+            completion(false,error)
+            print("\(error.rawValue)")
+            return
+        }
+        
         let useragent = getUserAgent()
         let storageDict = UserDefaults.standard.object(forKey: Constants.storageParameter) ?? [:]
         let cookieHeader = StorageHandler.shared.getCookieForHeader()
@@ -216,6 +267,7 @@ public class NetworkManager
             }
         }
     }
+
     
     fileprivate func handleNetworkResponse(_ response: HTTPURLResponse) -> APIResult<String>{
         switch response.statusCode {

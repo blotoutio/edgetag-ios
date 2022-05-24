@@ -24,6 +24,14 @@ public class Router<EndPoint: EndPointType>: NetworkRouter {
     private var task: URLSessionTask?
 
     func request(_ route: EndPoint, completion: @escaping NetworkRouterCompletion) {
+        
+        if route.baseURL?.absoluteString.count ?? 0 <= 0
+        {
+            let error = BaseAPIError.invalidURLError
+            completion(nil, nil, error)
+            return
+        }
+        
         let session = URLSession.shared
         do {
             let request = try self.buildRequest(from: route)
@@ -42,7 +50,7 @@ public class Router<EndPoint: EndPointType>: NetworkRouter {
 
     fileprivate func buildRequest(from route: EndPoint) throws -> URLRequest {
         
-        let urlWithPath = route.baseURL.appendingPathComponent(route.path).absoluteString.removingPercentEncoding
+        let urlWithPath = route.baseURL!.appendingPathComponent(route.path).absoluteString.removingPercentEncoding
         if urlWithPath?.count ?? 0 <= 0
         {
             throw URLConstructionError.urlError
