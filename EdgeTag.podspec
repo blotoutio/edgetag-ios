@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = "EdgeTag"
   s.module_name      = "EdgeTagSDK"
-  s.version          = "0.1.0"
+  s.version          = "0.3.0"
   s.summary          = "EdgeTag Mobile Analytics SDK"
   s.description      = "Client SDK for Edgetag"
 
