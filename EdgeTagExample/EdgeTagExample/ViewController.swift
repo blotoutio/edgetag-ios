@@ -24,9 +24,21 @@ class ViewController: UIViewController {
     }
 
     @objc func giveConsent() {
-        self.edgeTagManager?.giveConsentForProviders(consent: ["facebook":true, "smart":false], completion: { success, error in
+        self.edgeTagManager?.giveConsentForProviders(consent: ["facebook":false, "smart":false,"all":false], completion: { success, error in
             if success{
                 print("consent given from client")
+            }
+            else
+            {
+                print("Error is \(error?.localizedDescription ?? "")")
+            }
+        })
+    }
+    
+    @objc func sendUserDetails() {
+        self.edgeTagManager?.addUserIDGraph(userKey: "email", userValue: "me@domain.com", completion: { success, error in
+            if success{
+                print("user identifier stored")
             }
             else
             {
@@ -55,5 +67,11 @@ class ViewController: UIViewController {
         button2.setTitle("Add Tag", for: .normal)
         button2.addTarget(self, action:#selector(self.addTag), for: .touchUpInside)
         self.view.addSubview(button2)
+        
+        let button3:UIButton = UIButton(frame: CGRect(x: 100, y: 600, width: 200, height: 50))
+        button3.backgroundColor = .lightGray
+        button3.setTitle("Send User ID Details", for: .normal)
+        button3.addTarget(self, action:#selector(self.sendUserDetails), for: .touchUpInside)
+        self.view.addSubview(button3)
     }
 }

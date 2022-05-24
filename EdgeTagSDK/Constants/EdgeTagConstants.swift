@@ -29,4 +29,6 @@ public struct Constants {
     public static let EndpointURL = "endpointURL"
     public static let facebookApp = "facebookApp"
     public static let data = "data"
+    public static let userKeyParameter = "key"
+    public static let userValueParameter = "value"
 }

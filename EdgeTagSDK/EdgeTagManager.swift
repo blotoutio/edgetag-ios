@@ -26,4 +26,9 @@ public struct EdgeTagManager
     {
         networkManager.addTag(withData: withData, eventName: eventName, providers: providers, completion: completion)
     }
+    
+    public func addUserIDGraph(userKey:String,userValue:String,completion: @escaping (_ success:Bool, _ error: Error?) -> Void)
+    {
+        networkManager.addUserIDGraph(userKey: userKey, userValue: userValue, completion: completion)
+    }
 }

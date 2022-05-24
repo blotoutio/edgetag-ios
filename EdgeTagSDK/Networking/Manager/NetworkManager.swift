@@ -191,7 +191,32 @@ public class NetworkManager
             }
         }
     }
-
+    
+    
+    public func addUserIDGraph(userKey:String,userValue:String,completion: @escaping (_ success:Bool, _ error: Error?) -> Void)
+    {
+        let useragent = getUserAgent()
+        let storageDict = UserDefaults.standard.object(forKey: Constants.storageParameter) ?? [:]
+        let cookieHeader = StorageHandler.shared.getCookieForHeader()
+        let pageURL = PackageProviders.shared.getScreenName()
+        
+        router.request(.user(idGraphKey: userKey, idGraphValue: userValue, storage: storageDict as! Dictionary<AnyHashable, Any>, userAgent: useragent, cookieStr: cookieHeader, pageURL: pageURL)) { data, response, error in
+            
+            if let response = response as? HTTPURLResponse  {
+                let result = self.handleNetworkResponse(response)
+                switch result {
+                case .success:
+                    print("user id graph api success")
+                    completion(true,nil)
+                    break
+                case .failure(_):
+                    completion(false,error)
+                    break
+                }
+            }
+        }
+    }
+    
     fileprivate func handleNetworkResponse(_ response: HTTPURLResponse) -> APIResult<String>{
         switch response.statusCode {
         case 200...299: return .success
