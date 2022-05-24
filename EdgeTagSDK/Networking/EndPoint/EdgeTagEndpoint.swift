@@ -28,8 +28,8 @@ extension EdgeApi: EndPointType {
         }
     }
 
-    public var baseURL: URL {
-        guard let url = URL(string: environmentBaseURL) else { fatalError("baseURL could not be configured.")}
+    public var baseURL: URL? {
+        guard let url = URL(string: environmentBaseURL) else { return nil}
         return url
     }
 

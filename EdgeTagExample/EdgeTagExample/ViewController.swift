@@ -24,7 +24,7 @@ class ViewController: UIViewController {
     }
 
     @objc func giveConsent() {
-        self.edgeTagManager?.giveConsentForProviders(consent: ["facebook":false, "smart":false,"all":false], completion: { success, error in
+        self.edgeTagManager?.giveConsentForProviders(consent: ["facebook":false, "smart":false,"all":true], completion: { success, error in
             if success{
                 print("consent given from client")
             }
