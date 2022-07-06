@@ -17,7 +17,6 @@ public enum EdgeApi {
     case tag(withData: Dictionary<AnyHashable,Any>,eventName:String,providers :Dictionary<String,Bool>,storage :Dictionary<AnyHashable,Any>,userAgent:String,cookieStr :String,pageURL:String)
     case consent(consent: Dictionary<String,Bool>,storage :Dictionary<AnyHashable,Any>,userAgent:String,cookieStr :String,pageURL:String)
     case user(idGraphKey: String,idGraphValue:String,storage :Dictionary<AnyHashable,Any>,userAgent:String,cookieStr :String,pageURL:String)
-    //TODO: change here to accept only String, bool,Number
     case data(idGraph: Dictionary<String,AnyHashable>,storage :Dictionary<AnyHashable,Any>,userAgent:String,cookieStr :String,pageURL:String)
     case getData(dataKeys: Array<String>,cookieStr :String)
     case getKeys(cookieStr :String)
