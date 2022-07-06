@@ -56,11 +56,19 @@ extension EdgeApi: EndPointType {
         case .data:
             return "data"
         case .getData(let dataKeys,let cookieStr):
-            let keyStr = dataKeys.joined(separator:",")
+            let keyStr = getDataKeysString(datakeys: dataKeys)
             return "data?keys=\(keyStr)"
         case .getKeys:
             return "keys"
         }
+    }
+    
+    func getDataKeysString(datakeys:Array<String>) -> String
+    {
+        let newKeyString = datakeys.joined(separator:",")
+        let urlString = newKeyString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        return urlString
+        
     }
 
     public var httpMethod: HTTPMethod {

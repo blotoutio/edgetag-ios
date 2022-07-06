@@ -11,6 +11,13 @@ import WebKit
 public enum BaseAPIError: String,Error {
     case invalidURLError = "Incorrect EdgeTagConfiguration URL"
 }
+
+public enum UserKeyError : String, Error {
+    case invalidKey = "Invalid Key Type: Key does not belong to the permitted list of keys , Permmited keys: email, phone, firstName, lastName, gender, dateOfBirth, country, state, city, zip"
+    case sdkUninitialized = "SDK is not initialized"
+    case invalidDataValueType = "Invalid Value Type: Value can only be either of String,Number or Bool"
+}
+
 public class NetworkManager
 {
     public static let environment : NetworkEnvironment = .staging
@@ -25,12 +32,6 @@ public class NetworkManager
         case success
         case failure(String)
     }
-    
-    public enum UserKeyError : String, Error {
-        case invalidKey = "Key does not belong to the permitted list of keys , Permmited keys: email, phone, firstName, lastName, gender, dateOfBirth, country, state, city, zip"
-        case sdkUninitialized = "SDK is not initialized"
-    }
-    
     
     enum NetworkResponse:String {
         case success
@@ -278,6 +279,17 @@ public class NetworkManager
             return
         }
         
+        for value in idGraph.values
+        {
+            if !(value is String || value is NSNumber || value is Bool || value is Int || value is UInt || value is Int8 || value is UInt8 || value is Int32 || value is UInt32 || value is Int64 || value is UInt64 || value is Double || value is Float)
+            {
+                let error = UserKeyError.invalidDataValueType
+                completion(false,error,nil)
+                print("\(error.rawValue)")
+                return
+            }
+        }
+        
         let useragent = getUserAgent()
         let storageDict = UserDefaults.standard.object(forKey: Constants.storageParameter) ?? [:]
         let cookieHeader = StorageHandler.shared.getCookieForHeader()
@@ -309,6 +321,7 @@ public class NetworkManager
             print("\(error.rawValue)")
             return
         }
+        
         let cookieHeader = StorageHandler.shared.getCookieForHeader()
         
         router.request(.getData(dataKeys: idGraphKeys, cookieStr: cookieHeader)) { data, response, error in
@@ -417,6 +430,20 @@ public class NetworkManager
             IDFAHandler.shared.fetchAdvertisingIdentifier()
             self.checkForIDFA = false
             removeObservers()
+        }
+    }
+}
+
+extension UserKeyError:LocalizedError
+{
+    public var errorDescription: String? {
+        switch self {
+        case .invalidKey :
+            return "Key does not belong to the permitted list of keys , Permmited keys: email, phone, firstName, lastName, gender, dateOfBirth, country, state, city, zip"
+        case .sdkUninitialized :
+            return "SDK is not initialized"
+        case .invalidDataValueType :
+            return "Invalid Value Type: Value can only be either of String,Number or Bool"
         }
     }
 }
