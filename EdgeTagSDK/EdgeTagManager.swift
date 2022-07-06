@@ -31,4 +31,20 @@ public struct EdgeTagManager
     {
         networkManager.addUserIDGraph(userKey: userKey, userValue: userValue, completion: completion)
     }
+    
+    public func addDataIDGraph(idGraph:Dictionary<String,AnyHashable>,completion: @escaping (_ success:Bool, _ error: Error?) -> Void)
+    {
+        networkManager.addDataIDGraph(idGraph:idGraph, completion: completion)
+    }
+    
+    public func getDataIDGraph(idGraphKeys:[String],completion: @escaping (_ success:Bool, _ error: Error?, _ idGraph:Dictionary<String,AnyHashable>?) -> Void)
+    {
+        networkManager.getDataForIDGraphKeys(idGraphKeys:idGraphKeys, completion: completion)
+    }
+    
+    public func getUserKeys(completion: @escaping (_ success:Bool, _ error: Error?, _ idGraphKeys:Array<String>?) -> Void)
+    {
+        networkManager.getUserKeys( completion: completion)
+    }
+
 }

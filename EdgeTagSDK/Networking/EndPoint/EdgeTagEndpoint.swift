@@ -17,6 +17,9 @@ public enum EdgeApi {
     case tag(withData: Dictionary<AnyHashable,Any>,eventName:String,providers :Dictionary<String,Bool>,storage :Dictionary<AnyHashable,Any>,userAgent:String,cookieStr :String,pageURL:String)
     case consent(consent: Dictionary<String,Bool>,storage :Dictionary<AnyHashable,Any>,userAgent:String,cookieStr :String,pageURL:String)
     case user(idGraphKey: String,idGraphValue:String,storage :Dictionary<AnyHashable,Any>,userAgent:String,cookieStr :String,pageURL:String)
+    case data(idGraph: Dictionary<String,AnyHashable>,storage :Dictionary<AnyHashable,Any>,userAgent:String,cookieStr :String,pageURL:String)
+    case getData(dataKeys: Array<String>,cookieStr :String)
+    case getKeys(cookieStr :String)
 
 }
 
@@ -49,7 +52,22 @@ extension EdgeApi: EndPointType {
             return "consent"
         case .user:
             return "user"
+        case .data:
+            return "data"
+        case .getData(let dataKeys,let cookieStr):
+            let keyStr = getDataKeysString(datakeys: dataKeys)
+            return "data?keys=\(keyStr)"
+        case .getKeys:
+            return "keys"
         }
+    }
+    
+    func getDataKeysString(datakeys:Array<String>) -> String
+    {
+        let newKeyString = datakeys.joined(separator:",")
+        let urlString = newKeyString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        return urlString
+        
     }
 
     public var httpMethod: HTTPMethod {
@@ -62,6 +80,12 @@ extension EdgeApi: EndPointType {
             return .post
         case .user:
             return .post
+        case .data:
+            return .post
+        case .getData:
+            return .get
+        case .getKeys:
+            return .get
         }
     }
 
@@ -86,6 +110,16 @@ extension EdgeApi: EndPointType {
         case .user(let userKey,let userValue , let storage , let userAgent, let cookie,let pageURL):
             let bodyParam = [Constants.userKeyParameter:userKey,Constants.userValueParameter:userValue , Constants.storageParameter :storage,Constants.userAgentParameter :userAgent,Constants.pageURLParameter:pageURL] as [String : Any]
             return .requestParametersAndHeaders(bodyParameters: bodyParam, bodyEncoding: .jsonEncoding, urlParameters: [:], additionHeaders: [Constants.contentTypeHeader:Constants.jsonHeaderValue,Constants.cookieTypeHeader:cookie])
+            
+        case .data(let idGraph,let storage,let userAgent,let cookieStr,let pageURL):
+            let bodyParam = [Constants.dataParameter : idGraph,Constants.storageParameter :storage,Constants.userAgentParameter :userAgent,Constants.pageURLParameter:pageURL] as [String : Any]
+            return .requestParametersAndHeaders(bodyParameters: bodyParam, bodyEncoding: .jsonEncoding, urlParameters: [:], additionHeaders: [Constants.contentTypeHeader:Constants.jsonHeaderValue,Constants.cookieTypeHeader:cookieStr])
+
+        case .getData(let dataKeys,let cookieStr):
+            return .requestParametersAndHeaders(bodyParameters: nil, bodyEncoding: .jsonEncoding, urlParameters: [:], additionHeaders: [Constants.contentTypeHeader:Constants.jsonHeaderValue,Constants.cookieTypeHeader:cookieStr])
+
+        case .getKeys(let cookieStr):
+            return .requestParametersAndHeaders(bodyParameters: nil, bodyEncoding: .jsonEncoding, urlParameters: [:], additionHeaders: [Constants.contentTypeHeader:Constants.jsonHeaderValue,Constants.cookieTypeHeader:cookieStr])
 
         }
     }
