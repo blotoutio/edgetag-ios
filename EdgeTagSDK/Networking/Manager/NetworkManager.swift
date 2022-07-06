@@ -341,7 +341,7 @@ public class NetworkManager
                     }
                     else
                     {
-                        completion(true,nil,nil)
+                        completion(true,nil,[:])
                     }
                     break
                 case .failure(_):
@@ -380,7 +380,7 @@ public class NetworkManager
                         }
                     }
                     else{
-                        completion(true,nil,nil)
+                        completion(true,nil,[])
                     }
                     break
                 case .failure(_):
