@@ -284,7 +284,7 @@ public class NetworkManager
             if !(value is String || value is NSNumber || value is Bool || value is Int || value is UInt || value is Int8 || value is UInt8 || value is Int32 || value is UInt32 || value is Int64 || value is UInt64 || value is Double || value is Float)
             {
                 let error = UserKeyError.invalidDataValueType
-                completion(false,error,nil)
+                completion(false,error)
                 print("\(error.rawValue)")
                 return
             }
