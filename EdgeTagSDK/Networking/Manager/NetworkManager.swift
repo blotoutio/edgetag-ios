@@ -268,7 +268,7 @@ public class NetworkManager
             }
         }
     }
-    //addDataIDGraph
+
     public func addDataIDGraph(idGraph:Dictionary<String,String>,completion: @escaping (_ success:Bool, _ error: Error?) -> Void)
     {
         if !isSDKInitialized
