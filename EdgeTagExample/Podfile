@@ -7,5 +7,5 @@ target 'EdgeTagExample' do
 
 
   # Pods for EdgeTagExample
-  pod 'EdgeTag','0.4.0'
+  pod 'EdgeTag','0.4.1'
 end

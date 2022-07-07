@@ -15,7 +15,7 @@ public enum BaseAPIError: String,Error {
 public enum UserKeyError : String, Error {
     case invalidKey = "Invalid Key Type: Key does not belong to the permitted list of keys , Permmited keys: email, phone, firstName, lastName, gender, dateOfBirth, country, state, city, zip"
     case sdkUninitialized = "SDK is not initialized"
-    case invalidDataValueType = "Invalid Value Type: Value can only be either of String,Number or Bool"
+    case jsonParseErrorInAPIResponse = "Request failed due to parsing error, kindly raise this as an issue"
 }
 
 public class NetworkManager
@@ -268,8 +268,8 @@ public class NetworkManager
             }
         }
     }
-    
-    public func addDataIDGraph(idGraph:Dictionary<String,AnyHashable>,completion: @escaping (_ success:Bool, _ error: Error?) -> Void)
+    //addDataIDGraph
+    public func addDataIDGraph(idGraph:Dictionary<String,String>,completion: @escaping (_ success:Bool, _ error: Error?) -> Void)
     {
         if !isSDKInitialized
         {
@@ -277,17 +277,6 @@ public class NetworkManager
             completion(false,error)
             print("\(error.rawValue)")
             return
-        }
-        
-        for value in idGraph.values
-        {
-            if !(value is String || value is NSNumber || value is Bool || value is Int || value is UInt || value is Int8 || value is UInt8 || value is Int32 || value is UInt32 || value is Int64 || value is UInt64 || value is Double || value is Float)
-            {
-                let error = UserKeyError.invalidDataValueType
-                completion(false,error)
-                print("\(error.rawValue)")
-                return
-            }
         }
         
         let useragent = getUserAgent()
@@ -312,7 +301,7 @@ public class NetworkManager
         }
     }
     
-    public func getDataForIDGraphKeys(idGraphKeys:Array<String>,completion: @escaping (_ success:Bool, _ error: Error?, _ idGraph:Dictionary<String,AnyHashable>?) -> Void)
+    public func getDataForIDGraphKeys(idGraphKeys:Array<String>,completion: @escaping (_ success:Bool, _ error: Error?, _ idGraph:Dictionary<String,String>?) -> Void)
     {
         if !isSDKInitialized
         {
@@ -334,9 +323,18 @@ public class NetworkManager
                     if data != nil{
                         do {
                             let jsonDict =  try JSONSerialization.jsonObject(with: data!, options: []) as? [String: AnyHashable]
-                            completion(true,nil,jsonDict)
+                            if let jsonResultObj = jsonDict?["result"]
+                            {
+                                completion(true,nil,jsonResultObj as? Dictionary<String, String>)
+                            }
+                            else
+                            {
+                                completion(true,nil,[:])
+                            }
                         } catch {
-                            print(error.localizedDescription)
+                            let error :Error = UserKeyError.jsonParseErrorInAPIResponse
+                            completion(false,error,[:])
+                            print("Error is :\(error.localizedDescription)")
                         }
                     }
                     else
@@ -345,7 +343,7 @@ public class NetworkManager
                     }
                     break
                 case .failure(_):
-                    completion(false,error,nil)
+                    completion(false,error,[:])
                     break
                 }
             }
@@ -376,6 +374,8 @@ public class NetworkManager
                             let userKeys:[String] = jsonDict?["result"] as? [String] ?? []
                             completion(true,nil,userKeys)
                         } catch {
+                            let error :Error = UserKeyError.jsonParseErrorInAPIResponse
+                            completion(false,error,[])
                             print(error.localizedDescription)
                         }
                     }
@@ -384,7 +384,7 @@ public class NetworkManager
                     }
                     break
                 case .failure(_):
-                    completion(false,error,nil)
+                    completion(false,error,[])
                     break
                 }
             }
@@ -442,8 +442,8 @@ extension UserKeyError:LocalizedError
             return "Key does not belong to the permitted list of keys , Permmited keys: email, phone, firstName, lastName, gender, dateOfBirth, country, state, city, zip"
         case .sdkUninitialized :
             return "SDK is not initialized"
-        case .invalidDataValueType :
-            return "Invalid Value Type: Value can only be either of String,Number or Bool"
+        case .jsonParseErrorInAPIResponse :
+            return "Request failed due to parsing error, kindly raise this as an issue"
         }
     }
 }
