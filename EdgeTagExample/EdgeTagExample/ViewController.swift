@@ -51,7 +51,7 @@ class ViewController: UIViewController {
     
     @objc func sendData() {
         
-        self.edgeTagManager?.addDataIDGraph(idGraph: ["email":"me@abckl.ij","cutomInfo":"Random string entry","numberValue":987.467,"testBool":true,"invalid value":1], completion: { success, error in
+        self.edgeTagManager?.addDataIDGraph(idGraph: ["email":"me@abckl.ij","cutomInfo":"Random string entry"], completion: { success, error in
             if success{
                 print("user data stored")
             }
