@@ -193,19 +193,10 @@ public class NetworkManager
     func getStorageModelWithUserData()->Dictionary<AnyHashable, Any>
     {
         var storageDict = StorageHandler.shared.getStorageValues()
-        //[Constants.facebookApp:[Constants.idfa_id:userID]]
-       // var storageData = storageDict[Constants.data] as? [String:[String:String]]
-        print("storageDict for user \(storageDict)")
-
         let userDataKV = PackageProviders.shared.getKVForUserData()
-        print("kv for user \(userDataKV)")
-
         if userDataKV.keys.count > 0{
             storageDict["kv"] = userDataKV
-        }
-       // storageDict[Constants.data] = storageData
-        print("storageDict for user with kv \(storageDict)")
-
+        }   
         return storageDict
     }
     
@@ -225,12 +216,11 @@ public class NetworkManager
         {
             return
         }
-       // let storageDict = UserDefaults.standard.object(forKey: Constants.storageParameter) ?? [:]
         let updatedStorageDict = getStorageModelWithUserData()
         let useragent = getUserAgent()
         let cookieHeader = StorageHandler.shared.getCookieForHeader()
         let pageURL = PackageProviders.shared.getScreenName()
-        router.request(.tag(withData: withData, eventName: eventName, providers: providers, storage: updatedStorageDict as! Dictionary<AnyHashable, Any> , userAgent:useragent, cookieStr: cookieHeader, pageURL: pageURL )) { data, response, error in
+        router.request(.tag(withData: withData, eventName: eventName, providers: providers, storage: updatedStorageDict, userAgent:useragent, cookieStr: cookieHeader, pageURL: pageURL )) { data, response, error in
             
             if error != nil {
                 completion(false,error)
@@ -269,12 +259,11 @@ public class NetworkManager
         
         let useragent = getUserAgent()
         PackageProviders.shared.createKVForUserData(kvUserData: [userKey:userValue])
-        //let storageDict = UserDefaults.standard.object(forKey: Constants.storageParameter) ?? [:]
         let updatedStorageDict = getStorageModelWithUserData()
         let cookieHeader = StorageHandler.shared.getCookieForHeader()
         let pageURL = PackageProviders.shared.getScreenName()
         
-        router.request(.user(idGraphKey: userKey, idGraphValue: userValue, storage: updatedStorageDict as! Dictionary<AnyHashable, Any>, userAgent: useragent, cookieStr: cookieHeader, pageURL: pageURL)) { data, response, error in
+        router.request(.user(idGraphKey: userKey, idGraphValue: userValue, storage: updatedStorageDict, Any>, userAgent: useragent, cookieStr: cookieHeader, pageURL: pageURL)) { data, response, error in
             
             if let response = response as? HTTPURLResponse  {
                 let result = self.handleNetworkResponse(response)
@@ -304,12 +293,11 @@ public class NetworkManager
         let useragent = getUserAgent()
         PackageProviders.shared.createKVForUserData(kvUserData: idGraph)
 
-       // let storageDict = UserDefaults.standard.object(forKey: Constants.storageParameter) ?? [:]
         let updatedStorageDict = getStorageModelWithUserData()
         let cookieHeader = StorageHandler.shared.getCookieForHeader()
         let pageURL = PackageProviders.shared.getScreenName()
         
-        router.request(.data(idGraph: idGraph, storage: updatedStorageDict as! Dictionary<AnyHashable, Any>, userAgent: useragent, cookieStr: cookieHeader, pageURL: pageURL)) { data, response, error in
+        router.request(.data(idGraph: idGraph, storage: updatedStorageDict, Any>, userAgent: useragent, cookieStr: cookieHeader, pageURL: pageURL)) { data, response, error in
             
             if let response = response as? HTTPURLResponse  {
                 let result = self.handleNetworkResponse(response)
