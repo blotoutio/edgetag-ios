@@ -11,7 +11,7 @@ class PackageProviders{
 
     static let shared = PackageProviders()
     var providers:[String] = []
-  //  var providerKeys:[String:String] = [:]
+    var kvUserDataDictionary:[String:String] = [:]
     var storage:Dictionary<AnyHashable, Any> = [:]
     var consentSettings:Dictionary<String,Bool> = [:]
 
@@ -88,5 +88,17 @@ class PackageProviders{
         storage[Constants.edgeTag] = edgeTagDict
         StorageHandler.shared.saveStorageValues(storage:storage)
         return storage
+    }
+    
+    func createKVForUserData(kvUserData:Dictionary<String,String>)
+    {
+        let kvResults = kvUserDataDictionary.merging(kvUserData, uniquingKeysWith: { (_, last) in last })
+        kvUserDataDictionary = kvResults
+    }
+    
+    func getKVForUserData() -> Dictionary<String,String>
+    {
+        print("kv for user \(kvUserDataDictionary)")
+        return kvUserDataDictionary
     }
 }
