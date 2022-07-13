@@ -170,9 +170,10 @@ public class NetworkManager
         
         let useragent = getUserAgent()
         let storageDict = PackageProviders.shared.createStorageModelForAPI(consent:consent)
+        let updatedStorageDict = getStorageModelWithUserData()
         let cookieHeader = StorageHandler.shared.getCookieForHeader()
         let pageURL = PackageProviders.shared.getScreenName()
-        router.request(.consent(consent: consent, storage: storageDict, userAgent:useragent, cookieStr: cookieHeader, pageURL: pageURL )) { data, response, error in
+        router.request(.consent(consent: consent, storage: updatedStorageDict, userAgent:useragent, cookieStr: cookieHeader, pageURL: pageURL )) { data, response, error in
             
             if let response = response as? HTTPURLResponse  {
                 let result = self.handleNetworkResponse(response)
@@ -189,6 +190,15 @@ public class NetworkManager
         }
     }
     
+    func getStorageModelWithUserData()->Dictionary<AnyHashable, Any>
+    {
+        var storageDict = StorageHandler.shared.getStorageValues()
+        let userDataKV = PackageProviders.shared.getKVForUserData()
+        if userDataKV.keys.count > 0{
+            storageDict["kv"] = userDataKV
+        }   
+        return storageDict
+    }
     
     public func addTag(isSystemEvent:Bool? = false,
                        withData: Dictionary<AnyHashable,Any>,eventName:String, providers:Dictionary<String,Bool>,completion: @escaping (_ success:Bool, _ error: Error?) -> Void)
@@ -206,11 +216,11 @@ public class NetworkManager
         {
             return
         }
-        let storageDict = UserDefaults.standard.object(forKey: Constants.storageParameter) ?? [:]
+        let updatedStorageDict = getStorageModelWithUserData()
         let useragent = getUserAgent()
         let cookieHeader = StorageHandler.shared.getCookieForHeader()
         let pageURL = PackageProviders.shared.getScreenName()
-        router.request(.tag(withData: withData, eventName: eventName, providers: providers, storage: storageDict as! Dictionary<AnyHashable, Any> , userAgent:useragent, cookieStr: cookieHeader, pageURL: pageURL )) { data, response, error in
+        router.request(.tag(withData: withData, eventName: eventName, providers: providers, storage: updatedStorageDict, userAgent:useragent, cookieStr: cookieHeader, pageURL: pageURL )) { data, response, error in
             
             if error != nil {
                 completion(false,error)
@@ -248,11 +258,12 @@ public class NetworkManager
         }
         
         let useragent = getUserAgent()
-        let storageDict = UserDefaults.standard.object(forKey: Constants.storageParameter) ?? [:]
+        PackageProviders.shared.createKVForUserData(kvUserData: [userKey:userValue])
+        let updatedStorageDict = getStorageModelWithUserData()
         let cookieHeader = StorageHandler.shared.getCookieForHeader()
         let pageURL = PackageProviders.shared.getScreenName()
         
-        router.request(.user(idGraphKey: userKey, idGraphValue: userValue, storage: storageDict as! Dictionary<AnyHashable, Any>, userAgent: useragent, cookieStr: cookieHeader, pageURL: pageURL)) { data, response, error in
+        router.request(.user(idGraphKey: userKey, idGraphValue: userValue, storage: updatedStorageDict, Any>, userAgent: useragent, cookieStr: cookieHeader, pageURL: pageURL)) { data, response, error in
             
             if let response = response as? HTTPURLResponse  {
                 let result = self.handleNetworkResponse(response)
@@ -280,11 +291,13 @@ public class NetworkManager
         }
         
         let useragent = getUserAgent()
-        let storageDict = UserDefaults.standard.object(forKey: Constants.storageParameter) ?? [:]
+        PackageProviders.shared.createKVForUserData(kvUserData: idGraph)
+
+        let updatedStorageDict = getStorageModelWithUserData()
         let cookieHeader = StorageHandler.shared.getCookieForHeader()
         let pageURL = PackageProviders.shared.getScreenName()
         
-        router.request(.data(idGraph: idGraph, storage: storageDict as! Dictionary<AnyHashable, Any>, userAgent: useragent, cookieStr: cookieHeader, pageURL: pageURL)) { data, response, error in
+        router.request(.data(idGraph: idGraph, storage: updatedStorageDict, Any>, userAgent: useragent, cookieStr: cookieHeader, pageURL: pageURL)) { data, response, error in
             
             if let response = response as? HTTPURLResponse  {
                 let result = self.handleNetworkResponse(response)
