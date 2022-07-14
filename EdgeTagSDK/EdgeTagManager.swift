@@ -46,5 +46,10 @@ public struct EdgeTagManager
     {
         networkManager.getUserKeys( completion: completion)
     }
+    
+    public func isAdvertiserIdAvailable(completion: @escaping (_ success:Bool, _ error: Error?) -> Void)
+    {
+        networkManager.isIDFAAccessAuthorised(completion: completion)
+    }
 
 }
