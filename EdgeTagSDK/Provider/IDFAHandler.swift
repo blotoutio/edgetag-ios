@@ -24,15 +24,12 @@ public class IDFAHandler
                     // Tracking authorization dialog was shown and we are authorized
                     let userIdentifier = ASIdentifierManager.shared().advertisingIdentifier.uuidString
                     StorageHandler.shared.saveUserIdentifier(uuidString: userIdentifier)
-                    print("IDFA authorised \(ASIdentifierManager.shared().advertisingIdentifier.uuidString)")
                     
                 case .denied:
                     self.passIDFAValuesToManager(checkForIDFA: false, idfaAccessGranted: false)
-                    print("IDFA denied")
                     // Tracking authorization dialog was shown and permission is denied
                     
                 case   .notDetermined:
-                    print("IDFA notDetermined")
                     self.idfaRetryCount = self.idfaRetryCount + 1
                     if (self.idfaRetryCount >= 3)
                     {
@@ -47,7 +44,6 @@ public class IDFAHandler
                     
                 case   .restricted:
                     self.passIDFAValuesToManager(checkForIDFA: false, idfaAccessGranted: false)
-                    print("IDFA restricted")
                     
                 @unknown default:
                     print("IDFA default")
