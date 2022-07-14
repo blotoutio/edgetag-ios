@@ -24,8 +24,12 @@ public class NetworkManager
     public let router = Router<EdgeApi>()
     static let shared = NetworkManager()
     var userAgent :String?
+    //Whether we should request for IDFA permission
     var checkForIDFA:Bool = false
     var isSDKInitialized:Bool = false
+    //Whether IDFA access was given by user
+    var idfaAccessGranted :Bool = false
+
     
     
     public enum APIResult<String>{
@@ -136,8 +140,13 @@ public class NetworkManager
         if edgeConfig.shouldFetchIDFA
         {
             checkForIDFA = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.checkIDFAValue()
+            }
         }
     }
+    
+    
     
     func sendInternalConsentForALL()
     {
@@ -196,7 +205,7 @@ public class NetworkManager
         let userDataKV = PackageProviders.shared.getKVForUserData()
         if userDataKV.keys.count > 0{
             storageDict["kv"] = userDataKV
-        }   
+        }
         return storageDict
     }
     
@@ -263,7 +272,7 @@ public class NetworkManager
         let cookieHeader = StorageHandler.shared.getCookieForHeader()
         let pageURL = PackageProviders.shared.getScreenName()
         
-        router.request(.user(idGraphKey: userKey, idGraphValue: userValue, storage: updatedStorageDict, Any>, userAgent: useragent, cookieStr: cookieHeader, pageURL: pageURL)) { data, response, error in
+        router.request(.user(idGraphKey: userKey, idGraphValue: userValue, storage: updatedStorageDict, userAgent: useragent, cookieStr: cookieHeader, pageURL: pageURL)) { data, response, error in
             
             if let response = response as? HTTPURLResponse  {
                 let result = self.handleNetworkResponse(response)
@@ -297,7 +306,7 @@ public class NetworkManager
         let cookieHeader = StorageHandler.shared.getCookieForHeader()
         let pageURL = PackageProviders.shared.getScreenName()
         
-        router.request(.data(idGraph: idGraph, storage: updatedStorageDict, Any>, userAgent: useragent, cookieStr: cookieHeader, pageURL: pageURL)) { data, response, error in
+        router.request(.data(idGraph: idGraph, storage: updatedStorageDict, userAgent: useragent, cookieStr: cookieHeader, pageURL: pageURL)) { data, response, error in
             
             if let response = response as? HTTPURLResponse  {
                 let result = self.handleNetworkResponse(response)
@@ -405,6 +414,7 @@ public class NetworkManager
     }
     
     
+    
     fileprivate func handleNetworkResponse(_ response: HTTPURLResponse) -> APIResult<String>{
         switch response.statusCode {
         case 200...299: return .success
@@ -424,6 +434,22 @@ public class NetworkManager
         }
         return self.userAgent ?? ""
     }
+
+    
+    public func isIDFAAccessAuthorised(completion: @escaping (_ success:Bool, _ error: Error?) -> Void)
+    {
+        if !isSDKInitialized
+        {
+            let error = UserKeyError.sdkUninitialized
+            completion(false,error)
+            print("\(error.rawValue)")
+            return
+        }
+        else
+        {
+            completion(idfaAccessGranted,nil)
+        }
+    }
     
     fileprivate  func addObserversToCheckIDFA() {
         //IDFA check is inaccurate if tested before this point.
@@ -433,17 +459,21 @@ public class NetworkManager
                                                object: nil)
     }
     
-    fileprivate  func removeObservers() {
-        NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
-    }
     
     @objc fileprivate func applicationDidBecomeActive() {
         if self.checkForIDFA
         {
-            IDFAHandler.shared.fetchAdvertisingIdentifier()
-            self.checkForIDFA = false
+            checkIDFAValue()
             removeObservers()
         }
+    }
+    
+    @objc func checkIDFAValue(){
+       IDFAHandler.shared.fetchAdvertisingIdentifier()
+   }
+    
+    fileprivate  func removeObservers() {
+        NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
     }
 }
 
@@ -460,3 +490,4 @@ extension UserKeyError:LocalizedError
         }
     }
 }
+
