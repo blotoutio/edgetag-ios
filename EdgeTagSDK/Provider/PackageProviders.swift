@@ -98,7 +98,6 @@ class PackageProviders{
     
     func getKVForUserData() -> Dictionary<String,String>
     {
-        print("kv for user \(kvUserDataDictionary)")
         return kvUserDataDictionary
     }
 }
