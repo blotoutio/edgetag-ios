@@ -181,7 +181,11 @@ public class NetworkManager
         let storageDict = PackageProviders.shared.createStorageModelForAPI(consent:consent)
         let updatedStorageDict = getStorageModelWithUserData()
         let cookieHeader = StorageHandler.shared.getCookieForHeader()
-        let pageURL = PackageProviders.shared.getScreenName()
+        var pageURL = ""
+        PackageProviders.shared.getScreenName { name in
+            pageURL = name
+        }
+        
         router.request(.consent(consent: consent, storage: updatedStorageDict, userAgent:useragent, cookieStr: cookieHeader, pageURL: pageURL )) { data, response, error in
             
             if let response = response as? HTTPURLResponse  {
@@ -228,7 +232,10 @@ public class NetworkManager
         let updatedStorageDict = getStorageModelWithUserData()
         let useragent = getUserAgent()
         let cookieHeader = StorageHandler.shared.getCookieForHeader()
-        let pageURL = PackageProviders.shared.getScreenName()
+        var pageURL = ""
+        PackageProviders.shared.getScreenName { name in
+            pageURL = name
+        }
         router.request(.tag(withData: withData, eventName: eventName, providers: providers, storage: updatedStorageDict, userAgent:useragent, cookieStr: cookieHeader, pageURL: pageURL )) { data, response, error in
             
             if error != nil {
@@ -270,8 +277,10 @@ public class NetworkManager
         PackageProviders.shared.createKVForUserData(kvUserData: [userKey:userValue])
         let updatedStorageDict = getStorageModelWithUserData()
         let cookieHeader = StorageHandler.shared.getCookieForHeader()
-        let pageURL = PackageProviders.shared.getScreenName()
-        
+        var pageURL = ""
+        PackageProviders.shared.getScreenName { name in
+            pageURL = name
+        }
         router.request(.user(idGraphKey: userKey, idGraphValue: userValue, storage: updatedStorageDict, userAgent: useragent, cookieStr: cookieHeader, pageURL: pageURL)) { data, response, error in
             
             if let response = response as? HTTPURLResponse  {
@@ -304,7 +313,10 @@ public class NetworkManager
 
         let updatedStorageDict = getStorageModelWithUserData()
         let cookieHeader = StorageHandler.shared.getCookieForHeader()
-        let pageURL = PackageProviders.shared.getScreenName()
+        var pageURL = ""
+        PackageProviders.shared.getScreenName { name in
+            pageURL = name
+        }
         
         router.request(.data(idGraph: idGraph, storage: updatedStorageDict, userAgent: useragent, cookieStr: cookieHeader, pageURL: pageURL)) { data, response, error in
             

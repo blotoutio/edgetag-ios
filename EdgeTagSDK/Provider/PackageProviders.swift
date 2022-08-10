@@ -48,17 +48,22 @@ class PackageProviders{
         }
         return isTaggingPossible
     }
-
-
-
-    func getScreenName()-> String
+    
+    func getScreenName(completion: @escaping (String) -> () )
     {
         var screenName = ""
-        if let topVC  = UIApplication.getTopViewController()
-        {
-             screenName = topVC.className
+        var topVC:UIViewController?
+        DispatchQueue.main.async {
+            let keyWindow = UIApplication.shared.windows.first { $0.isKeyWindow }
+            topVC  =  keyWindow?.rootViewController?.topMostViewController()
+            if topVC != nil
+            {
+                screenName = NSStringFromClass(topVC!.classForCoder)
+                let arr = screenName.components(separatedBy: ".")
+                screenName = arr.last ?? screenName
+            }
+            completion(screenName)
         }
-        return screenName
     }
 
     func createStorageModelForAPI(consent:Dictionary<String,Bool>?)-> Dictionary<AnyHashable, Any>
