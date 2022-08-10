@@ -17,19 +17,36 @@ extension NSObject {
     return String(describing: self)
   }
 }
-extension UIApplication {
-
-    class func getTopViewController(base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
-
-        if let nav = base as? UINavigationController {
-            return getTopViewController(base: nav.visibleViewController)
-
-        } else if let tab = base as? UITabBarController, let selected = tab.selectedViewController {
-            return getTopViewController(base: selected)
-
-        } else if let presented = base?.presentedViewController {
-            return getTopViewController(base: presented)
+extension UIViewController {
+    @objc func topMostViewController() -> UIViewController {
+        // Handling Modal views
+        if let presentedViewController = self.presentedViewController {
+            return presentedViewController.topMostViewController()
         }
-        return base
+        // Handling UIViewController's added as subviews to some other views.
+        else {
+            for view in self.view.subviews
+            {
+                if let subViewController = view.next {
+                    if subViewController is UIViewController {
+                        let viewController = subViewController as! UIViewController
+                        return viewController.topMostViewController()
+                    }
+                }
+            }
+            return self
+        }
+    }
+}
+
+extension UITabBarController {
+    override func topMostViewController() -> UIViewController {
+        return self.selectedViewController!.topMostViewController()
+    }
+}
+
+extension UINavigationController {
+    override func topMostViewController() -> UIViewController {
+        return self.visibleViewController!.topMostViewController()
     }
 }
