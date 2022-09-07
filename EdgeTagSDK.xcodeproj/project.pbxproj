@@ -16,6 +16,8 @@
 		683B42E727AA6B4900A8D9DE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683B42E627AA6B4900A8D9DE /* NetworkManager.swift */; };
 		6847988D27B24C4A0097EDAF /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6847988C27B24C4A0097EDAF /* AppTrackingTransparency.framework */; };
 		6847989327B2A1370097EDAF /* EdgeTagManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6847989227B2A1370097EDAF /* EdgeTagManager.swift */; };
+		6848508828C61C72007E62F7 /* EdgeTagSDKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6848508728C61C72007E62F7 /* EdgeTagSDKTests.swift */; };
+		6848508928C61C72007E62F7 /* EdgeTagSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 683B42CC27A93C6800A8D9DE /* EdgeTagSDK.framework */; };
 		687D845927B5467800E9F9A2 /* ViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687D845827B5467800E9F9A2 /* ViewController+Extension.swift */; };
 		68F5C1E527AAAD590089EC81 /* PackageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F5C1E427AAAD580089EC81 /* PackageModel.swift */; };
 		68F5C1E927AD222E0089EC81 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F5C1E827AD222E0089EC81 /* ParameterEncoding.swift */; };
@@ -28,6 +30,16 @@
 		68FFAFBD27B6B1C200955354 /* StorageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FFAFBC27B6B1C200955354 /* StorageHandler.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		6848508A28C61C72007E62F7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 683B42C327A93C6800A8D9DE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 683B42CB27A93C6800A8D9DE;
+			remoteInfo = EdgeTagSDK;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		683B42CC27A93C6800A8D9DE /* EdgeTagSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EdgeTagSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		683B42CF27A93C6800A8D9DE /* EdgeTagSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EdgeTagSDK.h; sourceTree = "<group>"; };
@@ -39,6 +51,8 @@
 		683B42E627AA6B4900A8D9DE /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		6847988C27B24C4A0097EDAF /* AppTrackingTransparency.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTrackingTransparency.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/System/Library/Frameworks/AppTrackingTransparency.framework; sourceTree = DEVELOPER_DIR; };
 		6847989227B2A1370097EDAF /* EdgeTagManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeTagManager.swift; sourceTree = "<group>"; };
+		6848508528C61C72007E62F7 /* EdgeTagSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EdgeTagSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6848508728C61C72007E62F7 /* EdgeTagSDKTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeTagSDKTests.swift; sourceTree = "<group>"; };
 		687D845827B5467800E9F9A2 /* ViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extension.swift"; sourceTree = "<group>"; };
 		68F5C1E427AAAD580089EC81 /* PackageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageModel.swift; sourceTree = "<group>"; };
 		68F5C1E827AD222E0089EC81 /* ParameterEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterEncoding.swift; sourceTree = "<group>"; };
@@ -60,6 +74,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6848508228C61C72007E62F7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6848508928C61C72007E62F7 /* EdgeTagSDK.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -67,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				683B42CE27A93C6800A8D9DE /* EdgeTagSDK */,
+				6848508628C61C72007E62F7 /* EdgeTagSDKTests */,
 				683B42CD27A93C6800A8D9DE /* Products */,
 				6847988B27B24C4A0097EDAF /* Frameworks */,
 			);
@@ -76,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				683B42CC27A93C6800A8D9DE /* EdgeTagSDK.framework */,
+				6848508528C61C72007E62F7 /* EdgeTagSDKTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -160,6 +184,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		6848508628C61C72007E62F7 /* EdgeTagSDKTests */ = {
+			isa = PBXGroup;
+			children = (
+				6848508728C61C72007E62F7 /* EdgeTagSDKTests.swift */,
+			);
+			path = EdgeTagSDKTests;
+			sourceTree = "<group>";
+		};
 		689DD05327B4E8C300325207 /* Provider */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,6 +257,24 @@
 			productReference = 683B42CC27A93C6800A8D9DE /* EdgeTagSDK.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		6848508428C61C72007E62F7 /* EdgeTagSDKTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6848508E28C61C72007E62F7 /* Build configuration list for PBXNativeTarget "EdgeTagSDKTests" */;
+			buildPhases = (
+				6848508128C61C72007E62F7 /* Sources */,
+				6848508228C61C72007E62F7 /* Frameworks */,
+				6848508328C61C72007E62F7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6848508B28C61C72007E62F7 /* PBXTargetDependency */,
+			);
+			name = EdgeTagSDKTests;
+			productName = EdgeTagSDKTests;
+			productReference = 6848508528C61C72007E62F7 /* EdgeTagSDKTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -232,11 +282,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1340;
 				LastUpgradeCheck = 1320;
 				TargetAttributes = {
 					683B42CB27A93C6800A8D9DE = {
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 1320;
+					};
+					6848508428C61C72007E62F7 = {
+						CreatedOnToolsVersion = 13.4;
 					};
 				};
 			};
@@ -254,12 +308,20 @@
 			projectRoot = "";
 			targets = (
 				683B42CB27A93C6800A8D9DE /* EdgeTagSDK */,
+				6848508428C61C72007E62F7 /* EdgeTagSDKTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		683B42CA27A93C6800A8D9DE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6848508328C61C72007E62F7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -293,7 +355,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6848508128C61C72007E62F7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6848508828C61C72007E62F7 /* EdgeTagSDKTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6848508B28C61C72007E62F7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 683B42CB27A93C6800A8D9DE /* EdgeTagSDK */;
+			targetProxy = 6848508A28C61C72007E62F7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		683B42D127A93C6800A8D9DE /* Debug */ = {
@@ -479,6 +557,40 @@
 			};
 			name = Release;
 		};
+		6848508C28C61C72007E62F7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4YS75C7357;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.blotout..EdgeTagSDKTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6848508D28C61C72007E62F7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4YS75C7357;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.blotout..EdgeTagSDKTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -496,6 +608,15 @@
 			buildConfigurations = (
 				683B42D427A93C6800A8D9DE /* Debug */,
 				683B42D527A93C6800A8D9DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6848508E28C61C72007E62F7 /* Build configuration list for PBXNativeTarget "EdgeTagSDKTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6848508C28C61C72007E62F7 /* Debug */,
+				6848508D28C61C72007E62F7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
