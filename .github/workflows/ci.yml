@@ -1,0 +1,19 @@
+name: Edgetag iOS lint, test & build
+on: [push]
+
+
+jobs:
+  edgetag_ios_lint_test_build:
+    runs-on: macOS-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      
+    - name: Lint Check for Edgetag
+      run: swiftlint lint --reporter github-actions-logging
+
+    - name: Test Edgetag
+      run: xcodebuild -project EdgeTagSDK.xcodeproj -scheme EdgeTagSDKTests -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 11,OS=15.2' test
+    - name: Build Edgetag
+      run: xcodebuild clean build -project "EdgeTagSDK.xcodeproj" -scheme "EdgeTagSDK"

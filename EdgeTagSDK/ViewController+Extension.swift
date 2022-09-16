@@ -9,13 +9,13 @@ import Foundation
 import UIKit
 
 extension NSObject {
-  var className: String {
-    return String(describing: type(of: self))
-  }
+    var className: String {
+        return String(describing: type(of: self))
+    }
 
-  class var className: String {
-    return String(describing: self)
-  }
+    class var className: String {
+        return String(describing: self)
+    }
 }
 extension UIViewController {
     @objc func topMostViewController() -> UIViewController {
@@ -25,8 +25,7 @@ extension UIViewController {
         }
         // Handling UIViewController's added as subviews to some other views.
         else {
-            for view in self.view.subviews
-            {
+            for view in self.view.subviews {
                 if let subViewController = view.next {
                     if subViewController is UIViewController {
                         let viewController = subViewController as! UIViewController

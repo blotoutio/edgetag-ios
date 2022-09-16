@@ -8,21 +8,21 @@
 import Foundation
 import UIKit
 
-struct Result : Codable {
-   var result : [Package]
+struct Result: Codable {
+    var result: [Package]
 }
 
-struct Package : Codable {
-    var package : String
-    var rules : Rule
+struct Package: Codable {
+    var package: String
+    var rules: Rule
 }
 
-struct Rule : Codable {
-    var capture : [Capture]
+struct Rule: Codable {
+    var capture: [Capture]
 }
 
-struct Capture : Codable {
-    var type : String
-    var key : String
-    var persist : String
+struct Capture: Codable {
+    var type: String
+    var key: String
+    var persist: String
 }

@@ -13,20 +13,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-        //EdgeTagConfiguration default values
-        //shouldFetchIDFA:true (IDFA needs to be included in info.plist)
-        //disableConsentCheck:false
+        // EdgeTagConfiguration default values
+        // shouldFetchIDFA:true (IDFA needs to be included in info.plist)
+        // disableConsentCheck:false
 
-
-        let edgeConfiguration = EdgeTagConfiguration(withUrl: "https://sdk-demo-t.edgetag.io",shouldFetchIDFA: true,disableConsentCheck: false)
+        let edgeConfiguration = EdgeTagConfiguration(withUrl: "https://sdk-demo-t.edgetag.io", shouldFetchIDFA: true, disableConsentCheck: false)
         let edgeTagManager = EdgeTagManager.shared
 
         edgeTagManager.initEdgeTag(withEdgeTagConfiguration: edgeConfiguration, completion: { success, error in
-            if success{
+            if success {
                 print("EdgeTag sdk init completed")
-            }
-            else
-            {
+            } else {
                 print("Error is \(error?.localizedDescription ?? "")")
             }
         })

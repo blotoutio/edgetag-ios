@@ -7,7 +7,7 @@
 
 import Foundation
 
-public typealias NetworkRouterCompletion = (_ data: Data?,_ response: URLResponse?,_ error: Error?)->()
+public typealias NetworkRouterCompletion = (_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void
 
 protocol NetworkRouter: class {
     associatedtype EndPoint: EndPointType
@@ -16,29 +16,28 @@ protocol NetworkRouter: class {
 }
 
 public class Router<EndPoint: EndPointType>: NetworkRouter {
-    
+
     enum URLConstructionError: Error {
         case urlError
     }
-    
+
     private var task: URLSessionTask?
 
     func request(_ route: EndPoint, completion: @escaping NetworkRouterCompletion) {
-        
-        if route.baseURL?.absoluteString.count ?? 0 <= 0
-        {
+
+        if route.baseURL?.absoluteString.count ?? 0 <= 0 {
             let error = BaseAPIError.invalidURLError
             completion(nil, nil, error)
             return
         }
-        
+
         let session = URLSession.shared
         do {
             let request = try self.buildRequest(from: route)
             task = session.dataTask(with: request, completionHandler: { data, response, error in
                 completion(data, response, error)
             })
-        }catch {
+        } catch {
             completion(nil, nil, error)
         }
         self.task?.resume()
@@ -49,17 +48,16 @@ public class Router<EndPoint: EndPointType>: NetworkRouter {
     }
 
     fileprivate func buildRequest(from route: EndPoint) throws -> URLRequest {
-        
+
         let urlWithPath = route.baseURL!.appendingPathComponent(route.path).absoluteString.removingPercentEncoding
-        if urlWithPath?.count ?? 0 <= 0
-        {
+        if urlWithPath?.count ?? 0 <= 0 {
             throw URLConstructionError.urlError
         }
         let requestURL =  URL(string: urlWithPath!)
-        var request = URLRequest(url:requestURL!,
+        var request = URLRequest(url: requestURL!,
                                  cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,
                                  timeoutInterval: 10.0)
-        
+
         request.httpMethod = route.httpMethod.rawValue
         do {
             switch route.task {
@@ -68,17 +66,17 @@ public class Router<EndPoint: EndPointType>: NetworkRouter {
             case .requestParameters(let bodyParameters,
                                     let bodyEncoding,
                                     let urlParameters):
-                
+
                 try self.configureParameters(bodyParameters: bodyParameters,
                                              bodyEncoding: bodyEncoding,
                                              urlParameters: urlParameters,
                                              request: &request)
-                
+
             case .requestParametersAndHeaders(let bodyParameters,
                                               let bodyEncoding,
                                               let urlParameters,
                                               let additionalHeaders):
-                
+
                 self.addAdditionalHeaders(additionalHeaders, request: &request)
                 try self.configureParameters(bodyParameters: bodyParameters,
                                              bodyEncoding: bodyEncoding,
@@ -90,7 +88,6 @@ public class Router<EndPoint: EndPointType>: NetworkRouter {
             throw error
         }
     }
-       
 
     fileprivate func configureParameters(bodyParameters: Parameters?,
                                          bodyEncoding: ParameterEncoding,
