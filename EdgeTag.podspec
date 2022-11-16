@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '12.0'
   s.source_files = ['**/*.{swift}']
-  s.exclude_files = ['EdgetagExample/**/*']
+  s.exclude_files = ['EdgeTagExample/**/*']
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES' }
   s.swift_version = '5.0'
 end
