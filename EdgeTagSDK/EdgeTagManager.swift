@@ -51,5 +51,10 @@ public struct EdgeTagManager
     {
         networkManager.isIDFAAccessAuthorised(completion: completion)
     }
-
+    
+    public func getUserId(completion: @escaping ( _ userId:String) -> Void)
+    {
+        let userId =  StorageHandler.shared.getCookie()
+        completion(userId)
+    }
 }
