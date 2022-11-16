@@ -236,7 +236,13 @@ public class NetworkManager
         PackageProviders.shared.getScreenName { name in
             pageURL = name
         }
-        router.request(.tag(withData: withData, eventName: eventName, providers: providers, storage: updatedStorageDict, userAgent:useragent, cookieStr: cookieHeader, pageURL: pageURL )) { data, response, error in
+        
+        let newData = PackageProviders.shared.getEventIdAndData(fromData: withData, eventName: eventName)
+        let userData = newData["data"]
+        let eventId = newData["eventId"]
+        let timestamp = newData["timestamp"]
+        
+        router.request(.tag(withData: userData, eventName: eventName, providers: providers, storage: updatedStorageDict, userAgent:useragent, cookieStr: cookieHeader, pageURL: pageURL,timestamp:timestamp,eventId:eventId)) { data, response, error in
             
             if error != nil {
                 completion(false,error)

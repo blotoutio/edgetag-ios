@@ -105,4 +105,30 @@ class PackageProviders{
     {
         return kvUserDataDictionary
     }
+    
+    func getEventIdAndData(fromData:Dictionary<AnyHashable,Any>,eventName:String)->Dictionary<AnyHashable,Any>
+    {
+        var eventId = ""
+        var dataDict = fromData
+        if fromData.keys .contains("eventId")
+        {
+            eventId = fromData["eventId"] as! String
+            dataDict.removeValue(forKey: "eventId")
+        }
+        else
+        {
+            eventId = generateEventID(eventName: eventName)
+        }
+        return ["data":dataDict,"eventId":eventId,"timestamp":NSDate().timeIntervalSince1970]
+    }
+    
+    func generateEventID(eventName:String)->String
+    {
+        let eventBase64 = eventName.data(using: .utf8)?.base64EncodedString() ?? ""
+        let uuid = UUID().uuidString
+        let timeInterval = Int64(round(NSDate().timeIntervalSince1970))
+        let eventId = "\(eventBase64)-\(uuid)-\(timeInterval)"
+        print("event id generated is \(eventId)")
+        return eventId
+    }
 }
