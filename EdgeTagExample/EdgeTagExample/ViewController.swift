@@ -87,6 +87,12 @@ class ViewController: UIViewController {
             }
         })
     }
+    
+    @objc func getUserId() {
+        self.edgeTagManager?.getUserId(completion: { userId in
+            print("User id is \(userId)")
+        })
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -134,6 +140,12 @@ class ViewController: UIViewController {
         button6.setTitle("Get user keys", for: .normal)
         button6.addTarget(self, action:#selector(self.getUserDataKeys), for: .touchUpInside)
         self.view.addSubview(button6)
+        
+        let button7:UIButton = UIButton(frame: CGRect(x: 100, y: 700, width: 200, height: 50))
+        button7.backgroundColor = .lightGray
+        button7.setTitle("Get user Id", for: .normal)
+        button7.addTarget(self, action:#selector(self.getUserId), for: .touchUpInside)
+        self.view.addSubview(button7)
     }
     
     
