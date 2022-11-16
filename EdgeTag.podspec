@@ -23,4 +23,5 @@ Pod::Spec.new do |s|
   s.exclude_files = ['EdgetagExample/**/*']
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES' }
   s.swift_version = '5.0'
+  s.framework = 'XCTest'	
 end
