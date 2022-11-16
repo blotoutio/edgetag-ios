@@ -238,9 +238,9 @@ public class NetworkManager
         }
         
         let newData = PackageProviders.shared.getEventIdAndData(fromData: withData, eventName: eventName)
-        let userData = newData["data"]
-        let eventId = newData["eventId"]
-        let timestamp = newData["timestamp"]
+        let userData = newData["data"] as? Dictionary<AnyHashable,Any> ?? [:]
+        let eventId = newData["eventId"] as? String ?? ""
+        let timestamp = newData["timestamp"] as? String ?? ""
         
         router.request(.tag(withData: userData, eventName: eventName, providers: providers, storage: updatedStorageDict, userAgent:useragent, cookieStr: cookieHeader, pageURL: pageURL,timestamp:timestamp,eventId:eventId)) { data, response, error in
             

@@ -119,7 +119,8 @@ class PackageProviders{
         {
             eventId = generateEventID(eventName: eventName)
         }
-        return ["data":dataDict,"eventId":eventId,"timestamp":NSDate().timeIntervalSince1970]
+        let timeStamp = Int64(round(NSDate().timeIntervalSince1970))
+        return ["data":dataDict,"eventId":eventId,"timestamp":"\(timeStamp)"]
     }
     
     func generateEventID(eventName:String)->String
