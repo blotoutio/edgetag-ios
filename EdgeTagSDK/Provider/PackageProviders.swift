@@ -128,7 +128,6 @@ class PackageProviders{
         let uuid = UUID().uuidString
         let timeInterval = Int64(round(NSDate().timeIntervalSince1970))
         let eventId = "\(eventBase64)-\(uuid)-\(timeInterval)"
-        print("event id generated is \(eventId)")
         return eventId
     }
 }
