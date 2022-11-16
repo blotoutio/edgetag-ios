@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = "EdgeTag"
   s.module_name      = "EdgeTagSDK"
-  s.version          = "0.5.0"
+  s.version          = "0.5.1"
   s.summary          = "EdgeTag Mobile Analytics SDK"
   s.description      = "Client SDK for Edgetag"
 
@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '12.0'
   s.source_files = ['**/*.{swift}']
-  s.exclude_files = ['EdgeTagExample/**/*','EdgeTagSDKTests']
+  s.exclude_files = ['EdgeTagExample/**/*','EdgeTagSDKTests/EdgeTagSDKTests.swift']
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES' }
   s.swift_version = '5.0'
 end

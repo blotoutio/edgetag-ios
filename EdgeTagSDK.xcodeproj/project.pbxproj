@@ -19,6 +19,14 @@
 		6848508828C61C72007E62F7 /* EdgeTagSDKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6848508728C61C72007E62F7 /* EdgeTagSDKTests.swift */; };
 		6848508928C61C72007E62F7 /* EdgeTagSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 683B42CC27A93C6800A8D9DE /* EdgeTagSDK.framework */; };
 		687D845927B5467800E9F9A2 /* ViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687D845827B5467800E9F9A2 /* ViewController+Extension.swift */; };
+		68A18B592976DB8600B71FBB /* BaseProviderInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A18B582976DB8600B71FBB /* BaseProviderInterface.swift */; };
+		68A18B5F2976DD5800B71FBB /* BlotoutCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A18B5E2976DD5800B71FBB /* BlotoutCloud.swift */; };
+		68A18B612976DE2E00B71FBB /* BlotoutAnalyticsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A18B602976DE2E00B71FBB /* BlotoutAnalyticsInterface.swift */; };
+		68A18B672976E7AC00B71FBB /* BOASystemEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A18B662976E7AC00B71FBB /* BOASystemEvents.swift */; };
+		68F15FCE297848E200269CB1 /* BlotoutAnalyticsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F15FCD297848E200269CB1 /* BlotoutAnalyticsConstants.swift */; };
+		68F15FD42979A0F000269CB1 /* BOSharedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F15FD32979A0F000269CB1 /* BOSharedManager.swift */; };
+		68F15FD62979AA4400269CB1 /* BOAUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F15FD52979AA4400269CB1 /* BOAUtilities.swift */; };
+		68F15FFC2979C16400269CB1 /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F15FFB2979C16400269CB1 /* ViewControllerExtension.swift */; };
 		68F5C1E527AAAD590089EC81 /* PackageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F5C1E427AAAD580089EC81 /* PackageModel.swift */; };
 		68F5C1E927AD222E0089EC81 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F5C1E827AD222E0089EC81 /* ParameterEncoding.swift */; };
 		68F5C1EB27AD223E0089EC81 /* JSONParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F5C1EA27AD223E0089EC81 /* JSONParameterEncoding.swift */; };
@@ -54,6 +62,14 @@
 		6848508528C61C72007E62F7 /* EdgeTagSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EdgeTagSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6848508728C61C72007E62F7 /* EdgeTagSDKTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeTagSDKTests.swift; sourceTree = "<group>"; };
 		687D845827B5467800E9F9A2 /* ViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extension.swift"; sourceTree = "<group>"; };
+		68A18B582976DB8600B71FBB /* BaseProviderInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseProviderInterface.swift; sourceTree = "<group>"; };
+		68A18B5E2976DD5800B71FBB /* BlotoutCloud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlotoutCloud.swift; sourceTree = "<group>"; };
+		68A18B602976DE2E00B71FBB /* BlotoutAnalyticsInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlotoutAnalyticsInterface.swift; sourceTree = "<group>"; };
+		68A18B662976E7AC00B71FBB /* BOASystemEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BOASystemEvents.swift; sourceTree = "<group>"; };
+		68F15FCD297848E200269CB1 /* BlotoutAnalyticsConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlotoutAnalyticsConstants.swift; sourceTree = "<group>"; };
+		68F15FD32979A0F000269CB1 /* BOSharedManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BOSharedManager.swift; sourceTree = "<group>"; };
+		68F15FD52979AA4400269CB1 /* BOAUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BOAUtilities.swift; sourceTree = "<group>"; };
+		68F15FFB2979C16400269CB1 /* ViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
 		68F5C1E427AAAD580089EC81 /* PackageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageModel.swift; sourceTree = "<group>"; };
 		68F5C1E827AD222E0089EC81 /* ParameterEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterEncoding.swift; sourceTree = "<group>"; };
 		68F5C1EA27AD223E0089EC81 /* JSONParameterEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParameterEncoding.swift; sourceTree = "<group>"; };
@@ -88,6 +104,7 @@
 		683B42C227A93C6800A8D9DE = {
 			isa = PBXGroup;
 			children = (
+				68A18B552976DA9A00B71FBB /* Providers */,
 				683B42CE27A93C6800A8D9DE /* EdgeTagSDK */,
 				6848508628C61C72007E62F7 /* EdgeTagSDKTests */,
 				683B42CD27A93C6800A8D9DE /* Products */,
@@ -107,6 +124,7 @@
 		683B42CE27A93C6800A8D9DE /* EdgeTagSDK */ = {
 			isa = PBXGroup;
 			children = (
+				68A18B572976DAB900B71FBB /* ProviderProtocol */,
 				68FFAFBB27B6B1AF00955354 /* Storage */,
 				68FFAFB827B6ACFC00955354 /* Utility */,
 				689DD05327B4E8C300325207 /* Provider */,
@@ -201,6 +219,36 @@
 			path = Provider;
 			sourceTree = "<group>";
 		};
+		68A18B552976DA9A00B71FBB /* Providers */ = {
+			isa = PBXGroup;
+			children = (
+				68A18B562976DAA800B71FBB /* BlotoutCloudProvider */,
+			);
+			path = Providers;
+			sourceTree = "<group>";
+		};
+		68A18B562976DAA800B71FBB /* BlotoutCloudProvider */ = {
+			isa = PBXGroup;
+			children = (
+				68F15FD52979AA4400269CB1 /* BOAUtilities.swift */,
+				68F15FD32979A0F000269CB1 /* BOSharedManager.swift */,
+				68A18B662976E7AC00B71FBB /* BOASystemEvents.swift */,
+				68A18B5E2976DD5800B71FBB /* BlotoutCloud.swift */,
+				68A18B602976DE2E00B71FBB /* BlotoutAnalyticsInterface.swift */,
+				68F15FCD297848E200269CB1 /* BlotoutAnalyticsConstants.swift */,
+				68F15FFB2979C16400269CB1 /* ViewControllerExtension.swift */,
+			);
+			path = BlotoutCloudProvider;
+			sourceTree = "<group>";
+		};
+		68A18B572976DAB900B71FBB /* ProviderProtocol */ = {
+			isa = PBXGroup;
+			children = (
+				68A18B582976DB8600B71FBB /* BaseProviderInterface.swift */,
+			);
+			path = ProviderProtocol;
+			sourceTree = "<group>";
+		};
 		68F5C1E327AAAD340089EC81 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -287,7 +335,7 @@
 				TargetAttributes = {
 					683B42CB27A93C6800A8D9DE = {
 						CreatedOnToolsVersion = 13.2.1;
-						LastSwiftMigration = 1320;
+						LastSwiftMigration = 1420;
 					};
 					6848508428C61C72007E62F7 = {
 						CreatedOnToolsVersion = 13.4;
@@ -335,18 +383,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68A18B612976DE2E00B71FBB /* BlotoutAnalyticsInterface.swift in Sources */,
 				68F5C1E927AD222E0089EC81 /* ParameterEncoding.swift in Sources */,
 				6847989327B2A1370097EDAF /* EdgeTagManager.swift in Sources */,
 				68F5C1F227AD6B010089EC81 /* PackageProviders.swift in Sources */,
+				68F15FCE297848E200269CB1 /* BlotoutAnalyticsConstants.swift in Sources */,
+				68A18B5F2976DD5800B71FBB /* BlotoutCloud.swift in Sources */,
 				68F5C1ED27AD3C9F0089EC81 /* EdgeTagConstants.swift in Sources */,
+				68A18B672976E7AC00B71FBB /* BOASystemEvents.swift in Sources */,
 				683B42E727AA6B4900A8D9DE /* NetworkManager.swift in Sources */,
 				68F5C1EB27AD223E0089EC81 /* JSONParameterEncoding.swift in Sources */,
+				68F15FD62979AA4400269CB1 /* BOAUtilities.swift in Sources */,
+				68F15FD42979A0F000269CB1 /* BOSharedManager.swift in Sources */,
 				68F5C1F627B119AE0089EC81 /* URLParameterEncoding.swift in Sources */,
 				683B42E327AA6A1500A8D9DE /* HTTPTask.swift in Sources */,
 				683B42DF27AA692E00A8D9DE /* EndPointType.swift in Sources */,
 				68FFAFB627B6739F00955354 /* EdgeTagConfiguration.swift in Sources */,
 				68F5C1E527AAAD590089EC81 /* PackageModel.swift in Sources */,
+				68A18B592976DB8600B71FBB /* BaseProviderInterface.swift in Sources */,
 				687D845927B5467800E9F9A2 /* ViewController+Extension.swift in Sources */,
+				68F15FFC2979C16400269CB1 /* ViewControllerExtension.swift in Sources */,
 				683B42E527AA6A5B00A8D9DE /* Router.swift in Sources */,
 				683B42DD27AA685500A8D9DE /* EdgeTagEndpoint.swift in Sources */,
 				68FFAFBA27B6AD1C00955354 /* IDFAHandler.swift in Sources */,
