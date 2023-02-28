@@ -14,7 +14,7 @@ public enum NetworkEnvironment {
 
 public enum EdgeApi {
     case initEdgeTag(cookieStr :String,disableConsentCheck:Bool? = false)
-    case tag(withData: Dictionary<AnyHashable,Any>,eventName:String,providers :Dictionary<String,Bool>,storage :Dictionary<AnyHashable,Any>,userAgent:String,cookieStr :String,pageURL:String,timestamp:String,eventId:String)
+    case tag(withProviderData:Dictionary<AnyHashable,Any>,withData: Dictionary<AnyHashable,Any>,eventName:String,providers :Dictionary<String,Bool>,storage :Dictionary<AnyHashable,Any>,userAgent:String,cookieStr :String,pageURL:String,timestamp:String,eventId:String)
     case consent(consent: Dictionary<String,Bool>,storage :Dictionary<AnyHashable,Any>,userAgent:String,cookieStr :String,pageURL:String)
     case user(idGraphKey: String,idGraphValue:String,storage :Dictionary<AnyHashable,Any>,userAgent:String,cookieStr :String,pageURL:String)
     case data(idGraph: Dictionary<String,AnyHashable>,storage :Dictionary<AnyHashable,Any>,userAgent:String,cookieStr :String,pageURL:String)
@@ -103,8 +103,8 @@ extension EdgeApi: EndPointType {
             let bodyParam = [Constants.consentStringParameter:consent , Constants.storageParameter :storage,Constants.userAgentParameter :userAgent,Constants.pageURLParameter:pageURL] as [String : Any]
             return .requestParametersAndHeaders(bodyParameters: bodyParam, bodyEncoding: .jsonEncoding, urlParameters: [:], additionHeaders: [Constants.contentTypeHeader:Constants.jsonHeaderValue,Constants.cookieTypeHeader:cookie])
 
-        case .tag(let data,let eventName,let providers,let storage, let userAgent, let cookie,let pageURL,let timestamp,let eventId):
-            let bodyParam = [Constants.dataNameParameter:data,Constants.eventNameParameter:eventName,Constants.providersParameter:providers ,Constants.storageParameter :storage,Constants.userAgentParameter :userAgent,Constants.pageURLParameter:pageURL,Constants.timestampParameter:timestamp,Constants.eventIdParameter:eventId] as [String : Any]
+        case .tag(let providerData,let data,let eventName,let providers,let storage, let userAgent, let cookie,let pageURL,let timestamp,let eventId):
+            let bodyParam = [Constants.providerDataNameParameter:providerData,Constants.dataNameParameter:data,Constants.eventNameParameter:eventName,Constants.providersParameter:providers ,Constants.storageParameter :storage,Constants.userAgentParameter :userAgent,Constants.pageURLParameter:pageURL,Constants.timestampParameter:timestamp,Constants.eventIdParameter:eventId] as [String : Any]
             return .requestParametersAndHeaders(bodyParameters: bodyParam, bodyEncoding: .jsonEncoding, urlParameters: [:], additionHeaders: [Constants.contentTypeHeader:Constants.jsonHeaderValue,Constants.cookieTypeHeader:cookie])
             
         case .user(let userKey,let userValue , let storage , let userAgent, let cookie,let pageURL):

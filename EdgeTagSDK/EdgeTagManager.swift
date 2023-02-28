@@ -22,9 +22,9 @@ public struct EdgeTagManager
         networkManager.giveConsentForProviders(consent: consent, completion: completion)
     }
 
-    public func addTag(withData: Dictionary<AnyHashable,Any>,eventName:String, providers:Dictionary<String,Bool>,completion: @escaping (_ success:Bool, _ error: Error?) -> Void)
+    public func addTag(isSystemEvent:Bool? = false,withProviderData:Dictionary<AnyHashable,Any>? = [:],withData: Dictionary<AnyHashable,Any>,eventName:String, providers:Dictionary<String,Bool>,completion: @escaping (_ success:Bool, _ error: Error?) -> Void)
     {
-        networkManager.addTag(withData: withData, eventName: eventName, providers: providers, completion: completion)
+        networkManager.addTag(isSystemEvent:isSystemEvent,withProviderData: withProviderData, withData: withData, eventName: eventName, providers: providers, completion: completion)
     }
     
     public func addUserIDGraph(userKey:String,userValue:String,completion: @escaping (_ success:Bool, _ error: Error?) -> Void)

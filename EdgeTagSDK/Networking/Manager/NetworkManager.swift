@@ -55,7 +55,6 @@ public class NetworkManager
         {
             let error = BaseAPIError.invalidURLError
             completion(false,error)
-            print("\(error.rawValue)")
             return
         }
         
@@ -93,6 +92,7 @@ public class NetworkManager
                         }
                         
                         let jsonDecoder = JSONDecoder.init()
+                        let str = String(decoding: responseData, as: UTF8.self)
                         let resultObj = try jsonDecoder.decode(Result.self, from: responseData)
                         PackageProviders.shared.parsePackages(resultObj: resultObj)
                         self.completePostInitActivity(edgeConfig: withEdgeTagConfiguration)
@@ -100,12 +100,25 @@ public class NetworkManager
                     }catch {
                         print(error)
                     }
+                    
                     completion(true,nil)
                     
                 case .failure(_):
                     self.isSDKInitialized = false
                     completion(false,nil)
                     break
+                }
+            }
+        }
+    }
+    
+    func callProvidersInit(edgeConfig:EdgeTagConfiguration)
+    {
+        if edgeConfig.providerInfo?.count ?? 0 > 0
+        {
+            for provider in edgeConfig.providerInfo!
+             {
+                provider.initProvider(withEdgeTagConfiguration: edgeConfig) { success, error in
                 }
             }
         }
@@ -118,6 +131,8 @@ public class NetworkManager
             updateConsentForALL()
         }
         self.sendAppInstallEvent()
+        self.callProvidersInit(edgeConfig:edgeConfig)
+
     }
     
     func sendAppInstallEvent()
@@ -173,7 +188,6 @@ public class NetworkManager
         {
             let error = UserKeyError.sdkUninitialized
             completion(false,error)
-            print("\(error.rawValue)")
             return
         }
         
@@ -213,14 +227,13 @@ public class NetworkManager
         return storageDict
     }
     
-    public func addTag(isSystemEvent:Bool? = false,
+    public func addTag(isSystemEvent:Bool? = false,withProviderData:Dictionary<AnyHashable,Any>? = [:],
                        withData: Dictionary<AnyHashable,Any>,eventName:String, providers:Dictionary<String,Bool>,completion: @escaping (_ success:Bool, _ error: Error?) -> Void)
     {
         if !isSDKInitialized
         {
             let error = UserKeyError.sdkUninitialized
             completion(false,error)
-            print("\(error.rawValue)")
             return
         }
         
@@ -242,7 +255,7 @@ public class NetworkManager
         let eventId = newData["eventId"] as? String ?? ""
         let timestamp = newData["timestamp"] as? String ?? ""
         
-        router.request(.tag(withData: userData, eventName: eventName, providers: providers, storage: updatedStorageDict, userAgent:useragent, cookieStr: cookieHeader, pageURL: pageURL,timestamp:timestamp,eventId:eventId)) { data, response, error in
+        router.request(.tag(withProviderData: withProviderData ?? [:], withData: userData, eventName: eventName, providers: providers, storage: updatedStorageDict, userAgent:useragent, cookieStr: cookieHeader, pageURL: pageURL,timestamp:timestamp,eventId:eventId)) { data, response, error in
             
             if error != nil {
                 completion(false,error)
@@ -275,7 +288,6 @@ public class NetworkManager
         {
             let error = UserKeyError.sdkUninitialized
             completion(false,error)
-            print("\(error.rawValue)")
             return
         }
         
@@ -293,7 +305,6 @@ public class NetworkManager
                 let result = self.handleNetworkResponse(response)
                 switch result {
                 case .success:
-                    print("user id graph api success")
                     completion(true,nil)
                     break
                 case .failure(_):
@@ -310,7 +321,6 @@ public class NetworkManager
         {
             let error = UserKeyError.sdkUninitialized
             completion(false,error)
-            print("\(error.rawValue)")
             return
         }
         
@@ -330,7 +340,6 @@ public class NetworkManager
                 let result = self.handleNetworkResponse(response)
                 switch result {
                 case .success:
-                    print("data id graph api success")
                     completion(true,nil)
                     break
                 case .failure(_):
@@ -347,7 +356,6 @@ public class NetworkManager
         {
             let error = UserKeyError.sdkUninitialized
             completion(false,error,nil)
-            print("\(error.rawValue)")
             return
         }
         
@@ -359,7 +367,6 @@ public class NetworkManager
                 let result = self.handleNetworkResponse(response)
                 switch result {
                 case .success:
-                    print("data id graph api success")
                     if data != nil{
                         do {
                             let jsonDict =  try JSONSerialization.jsonObject(with: data!, options: []) as? [String: AnyHashable]
@@ -374,7 +381,6 @@ public class NetworkManager
                         } catch {
                             let error :Error = UserKeyError.jsonParseErrorInAPIResponse
                             completion(false,error,[:])
-                            print("Error is :\(error.localizedDescription)")
                         }
                     }
                     else
@@ -396,7 +402,6 @@ public class NetworkManager
         {
             let error = UserKeyError.sdkUninitialized
             completion(false,error,nil)
-            print("\(error.rawValue)")
             return
         }
         let cookieHeader = StorageHandler.shared.getCookieForHeader()
@@ -407,7 +412,6 @@ public class NetworkManager
                 let result = self.handleNetworkResponse(response)
                 switch result {
                 case .success:
-                    print("data id graph api success")
                     if data != nil{
                         do {
                             let jsonDict =  try JSONSerialization.jsonObject(with: data!, options: []) as? [String: AnyHashable]
@@ -416,7 +420,6 @@ public class NetworkManager
                         } catch {
                             let error :Error = UserKeyError.jsonParseErrorInAPIResponse
                             completion(false,error,[])
-                            print(error.localizedDescription)
                         }
                     }
                     else{
@@ -460,7 +463,6 @@ public class NetworkManager
         {
             let error = UserKeyError.sdkUninitialized
             completion(false,error)
-            print("\(error.rawValue)")
             return
         }
         else

@@ -34,4 +34,5 @@ public struct Constants {
     public static let dataParameter = "data"
     public static let timestampParameter = "timestamp"
     public static let eventIdParameter  = "eventId"
+    public static let providerDataNameParameter  = "providerData"
 }

@@ -14,7 +14,8 @@ struct Result : Codable {
 
 struct Package : Codable {
     var package : String
-    var rules : Rule
+    var rules : Rule?
+    var variables : [String:String]
 }
 
 struct Rule : Codable {
@@ -26,3 +27,5 @@ struct Capture : Codable {
     var key : String
     var persist : String
 }
+
+
